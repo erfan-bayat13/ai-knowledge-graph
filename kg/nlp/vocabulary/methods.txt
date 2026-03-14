@@ -1,0 +1,46 @@
+# Optimization & Training
+LoRA
+QLoRA
+RLHF
+PPO
+DPO
+Flash Attention
+Flash Attention 2
+Grouped Query Attention
+Sliding Window Attention
+Rotary Position Embedding
+RoPE
+Grouped Query Attention
+GQA
+Multi-Query Attention
+MQA
+
+# Compression
+Quantization
+INT8
+INT4
+GPTQ
+AWQ
+Pruning
+Knowledge Distillation
+Speculative Decoding
+
+# Distributed
+Tensor Parallelism
+Pipeline Parallelism
+Data Parallelism
+ZeRO
+FSDP
+Megatron
+DeepSpeed
+
+# Architectures
+Mixture of Experts
+MoE
+Transformer
+BERT
+GPT
+LLaMA
+Mistral
+Mamba
+State Space Model

@@ -1,0 +1,11 @@
+image classification
+object detection
+text generation
+language modeling
+question answering
+code generation
+instruction following
+reasoning
+summarization
+machine translation
+speech recognition

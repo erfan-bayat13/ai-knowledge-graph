@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     # APIs
     anthropic_api_key: str = ""
+    together_api_key: str = ""
     github_token: str = ""
     twitter_bearer_token: str = ""
 

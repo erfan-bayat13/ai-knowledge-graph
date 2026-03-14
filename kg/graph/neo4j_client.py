@@ -210,3 +210,164 @@ class Neo4jClient:
         """Return total number of papers in graph."""
         result = self.run_query("MATCH (p:Paper) RETURN count(p) as count")
         return result[0]["count"] if result else 0
+    
+    # ─── Method / Dataset / Task Node Operations ──────────────────────────────
+
+    def create_method(self, name: str) -> bool:
+        """Create or update a Method node."""
+        query = """
+        MERGE (m:Method {name: $name})
+        SET m.updated_at = timestamp()
+        RETURN m.name as name
+        """
+        result = self.run_query(query, {"name": name})
+        return len(result) > 0
+
+    def create_dataset(self, name: str) -> bool:
+        """Create or update a Dataset node."""
+        query = """
+        MERGE (d:Dataset {name: $name})
+        SET d.updated_at = timestamp()
+        RETURN d.name as name
+        """
+        result = self.run_query(query, {"name": name})
+        return len(result) > 0
+
+    def create_task(self, name: str) -> bool:
+        """Create or update a Task node."""
+        query = """
+        MERGE (t:Task {name: $name})
+        SET t.updated_at = timestamp()
+        RETURN t.name as name
+        """
+        result = self.run_query(query, {"name": name})
+        return len(result) > 0
+
+    # ─── Enrichment Relationship Operations ───────────────────────────────────
+
+    def link_paper_proposes_method(self, arxiv_id: str, method_name: str) -> bool:
+        """Create PROPOSES relationship: Paper → Method."""
+        query = """
+        MATCH (p:Paper {arxiv_id: $arxiv_id})
+        MATCH (m:Method {name: $method_name})
+        MERGE (p)-[:PROPOSES]->(m)
+        RETURN p.arxiv_id as id
+        """
+        result = self.run_query(query, {
+            "arxiv_id": arxiv_id,
+            "method_name": method_name,
+        })
+        return len(result) > 0
+
+    def link_paper_uses_method(self, arxiv_id: str, method_name: str) -> bool:
+        """Create USES relationship: Paper → Method."""
+        query = """
+        MATCH (p:Paper {arxiv_id: $arxiv_id})
+        MATCH (m:Method {name: $method_name})
+        MERGE (p)-[:USES]->(m)
+        RETURN p.arxiv_id as id
+        """
+        result = self.run_query(query, {
+            "arxiv_id": arxiv_id,
+            "method_name": method_name,
+        })
+        return len(result) > 0
+
+    def link_paper_evaluated_on(self, arxiv_id: str, dataset_name: str) -> bool:
+        """Create EVALUATED_ON relationship: Paper → Dataset."""
+        query = """
+        MATCH (p:Paper {arxiv_id: $arxiv_id})
+        MATCH (d:Dataset {name: $dataset_name})
+        MERGE (p)-[:EVALUATED_ON]->(d)
+        RETURN p.arxiv_id as id
+        """
+        result = self.run_query(query, {
+            "arxiv_id": arxiv_id,
+            "dataset_name": dataset_name,
+        })
+        return len(result) > 0
+
+    def link_paper_addresses_task(self, arxiv_id: str, task_name: str) -> bool:
+        """Create ADDRESSES relationship: Paper → Task."""
+        query = """
+        MATCH (p:Paper {arxiv_id: $arxiv_id})
+        MATCH (t:Task {name: $task_name})
+        MERGE (p)-[:ADDRESSES]->(t)
+        RETURN p.arxiv_id as id
+        """
+        result = self.run_query(query, {
+            "arxiv_id": arxiv_id,
+            "task_name": task_name,
+        })
+        return len(result) > 0
+
+    def link_method_improves_method(
+        self, method_name: str, improves_on: str
+    ) -> bool:
+        """Create IMPROVES relationship: Method → Method."""
+        query = """
+        MATCH (m1:Method {name: $method_name})
+        MATCH (m2:Method {name: $improves_on})
+        MERGE (m1)-[:IMPROVES]->(m2)
+        RETURN m1.name as name
+        """
+        result = self.run_query(query, {
+            "method_name": method_name,
+            "improves_on": improves_on,
+        })
+        return len(result) > 0
+
+    # ─── Enrichment Query Helpers ─────────────────────────────────────────────
+
+    def get_all_papers(self, batch_size: int = 100, skip: int = 0) -> list:
+        """
+        Fetch papers in batches for enrichment runner.
+        Returns arxiv_id + abstract only — that's all enrichment needs.
+        """
+        query = """
+        MATCH (p:Paper)
+        WHERE p.abstract IS NOT NULL AND p.abstract <> ''
+        RETURN p.arxiv_id as arxiv_id,
+               p.abstract  as abstract,
+               p.title     as title
+        ORDER BY p.arxiv_id
+        SKIP $skip
+        LIMIT $batch_size
+        """
+        return self.run_query(query, {
+            "skip": skip,
+            "batch_size": batch_size,
+        })
+
+    def get_enriched_paper_ids(self) -> set:
+        """
+        Return set of arxiv_ids that already have at least one
+        PROPOSES, USES, EVALUATED_ON, or ADDRESSES relationship.
+        Used by enrichment runner to skip already-processed papers.
+        """
+        query = """
+        MATCH (p:Paper)
+        WHERE (p)-[:PROPOSES]->() OR
+              (p)-[:USES]->()     OR
+              (p)-[:EVALUATED_ON]->() OR
+              (p)-[:ADDRESSES]->()
+        RETURN p.arxiv_id as arxiv_id
+        """
+        results = self.run_query(query)
+        return {r["arxiv_id"] for r in results}
+
+    def get_paper_count(self) -> int:
+        """Return total number of papers in graph."""
+        result = self.run_query("MATCH (p:Paper) RETURN count(p) as count")
+        return result[0]["count"] if result else 0
+
+    def setup_enrichment_schema(self):
+        """Add constraints for new node types."""
+        constraints = [
+            "CREATE CONSTRAINT method_name  IF NOT EXISTS FOR (m:Method)  REQUIRE m.name IS UNIQUE",
+            "CREATE CONSTRAINT dataset_name IF NOT EXISTS FOR (d:Dataset) REQUIRE d.name IS UNIQUE",
+            "CREATE CONSTRAINT task_name    IF NOT EXISTS FOR (t:Task)    REQUIRE t.name IS UNIQUE",
+        ]
+        for query in constraints:
+            self.run_query(query)
+        logger.info("Enrichment schema setup complete")

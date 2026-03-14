@@ -1,0 +1,22 @@
+# Vision
+ImageNet
+CIFAR-10
+CIFAR-100
+COCO
+ADE20K
+
+# Language
+GLUE
+SuperGLUE
+SQuAD
+MMLU
+HumanEval
+GSM8K
+BIG-Bench
+HELM
+LAMBADA
+
+# Multimodal
+VQA
+LAION
+CLIP
