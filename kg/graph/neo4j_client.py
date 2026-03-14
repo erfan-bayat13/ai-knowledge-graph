@@ -65,7 +65,7 @@ class Neo4jClient:
         indexes = [
             "CREATE INDEX paper_title     IF NOT EXISTS FOR (p:Paper)  ON (p.title)",
             "CREATE INDEX paper_published IF NOT EXISTS FOR (p:Paper)  ON (p.published_date)",
-            "CREATE VECTOR INDEX chunk_embedding IF NOT EXISTS FOR (c:Chunk) ON (c.embedding) OPTIONS {indexConfig: {`vector.dimensions`: 384, `vector.similarity_function`: 'cosine'}}",
+            "CREATE VECTOR INDEX chunk_embedding IF NOT EXISTS FOR (c:Chunk) ON (c.embedding) OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}}",
         ]
         for q in constraints + indexes:
             try:
