@@ -11,15 +11,15 @@ logger = logging.getLogger(__name__)
 
 # arXiv RSS feeds to crawl
 ARXIV_FEEDS = [
-    "http://export.arxiv.org/rss/cs.LG",
-    "http://export.arxiv.org/rss/cs.DC",
-    "http://export.arxiv.org/rss/cs.AI",
-    "http://export.arxiv.org/rss/cs.NE",
-    "http://export.arxiv.org/rss/cs.CV",   # Computer Vision
-    "http://export.arxiv.org/rss/cs.CL",   # Computation & Language
-    "http://export.arxiv.org/rss/cs.CR",   # Cryptography & Security
-    "http://export.arxiv.org/rss/cs.SE",   # Software Engineering
-    "http://export.arxiv.org/rss/stat.ML", # Statistics ML
+    "http://export.arxiv.org/rss/cs.LG",   # Machine Learning
+    "http://export.arxiv.org/rss/cs.DC",   # Distributed, Parallel, and Cluster Computing
+    "http://export.arxiv.org/rss/cs.AI",   # Artificial Intelligence
+    # "http://export.arxiv.org/rss/cs.NE",   # Neural and Evolutionary Computing
+    # "http://export.arxiv.org/rss/cs.CV",   # Computer Vision and Pattern Recognition
+    "http://export.arxiv.org/rss/cs.CL",   # Computation and Language (NLP)
+    # "http://export.arxiv.org/rss/cs.CR",   # Cryptography and Security
+    # "http://export.arxiv.org/rss/cs.SE",   # Software Engineering
+    "http://export.arxiv.org/rss/stat.ML", # Machine Learning (Statistics)
 ]
 
 # Keywords to filter infrastructure-relevant papers
@@ -202,7 +202,7 @@ class ArxivCrawler(BaseCrawler):
 
 if __name__ == "__main__":
     async def main():
-        crawler = ArxivCrawler(max_papers_per_feed=100)
+        crawler = ArxivCrawler(max_papers_per_feed=200)
         result = await crawler.run()
         print(f"Done: {result}")
 
