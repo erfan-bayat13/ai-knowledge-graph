@@ -1,270 +1,216 @@
 # kg/nlp/extractor.py
+#
+# Replaces the old regex + LLM hybrid entirely.
+#
+# Strategy:
+#   - Use spaCy dependency parsing to find method/dataset names from
+#     sentence structure, not vocabulary lists.
+#   - "we propose X"  → X is a PROPOSES candidate
+#   - "evaluated on X" / "we benchmark on X" → X is an EVALUATED_ON candidate
+#   - No .txt vocab files. No LLM at ingestion time.
+#   - Vocabulary grows dynamically from what papers actually say.
+#
+# Requirements:
+#   pip install spacy
+#   python -m spacy download en_core_web_sm
 
-import json
 import re
 import logging
-from pathlib import Path
 from typing import Dict, List, Optional
-import together
 
 logger = logging.getLogger(__name__)
 
-
-# ─── Load Vocabularies ────────────────────────────────────────────────────────
-
-def _load_vocab(filename: str) -> List[str]:
-    path = Path(__file__).parent / "vocabulary" / filename
-    terms = []
-    for line in path.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#"):
-            terms.append(line)
-    return sorted(terms, key=len, reverse=True)
-
-METHODS  = _load_vocab("methods.txt")
-DATASETS = _load_vocab("datasets.txt")
-TASKS    = _load_vocab("tasks.txt")
+try:
+    import spacy
+    _nlp = spacy.load("en_core_web_sm")
+except OSError:
+    _nlp = None
+    logger.warning("spaCy model not found. Run: python -m spacy download en_core_web_sm")
 
 
-# ─── Layer 1: Rule-Based ─────────────────────────────────────────────────────
+# ── Verb lists ────────────────────────────────────────────────────────────────
+# These match sentence intent, not surface vocabulary.
 
-PROPOSAL_PATTERNS = [
-    # Parenthetical acronym FIRST: "we propose Long Name (ACRONYM)"
-    r"[Ww]e (?:propose|present|introduce|develop|call|release|train|build|design|create|describe)\s+[\w][\w\s\-]{1,60}?\(([A-Z][A-Za-z0-9\-]{1,20})\)",
+PROPOSAL_VERBS = {
+    "propose", "present", "introduce", "develop", "call",
+    "release", "build", "design", "create", "describe", "name",
+}
 
-    # "we propose/introduce X"
-    r"[Ww]e (?:propose|present|introduce|develop|call|release|train|build|design|create|describe)\s+([\w][\w\s\-]{1,40}?)(?:,|\.|which|that| a | an |\n|$)",
-
-    # "this paper proposes X"
-    r"[Tt]his (?:paper|work) (?:proposes|presents|introduces|develops|releases|describes)\s+([\w][\w\s\-]{1,40}?)(?:,|\.|which|that|\n|$)",
-
-    # "we call our method X"
-    r"[Ww]e (?:name|call) our (?:method|model|approach|framework|system|algorithm)\s+([\w][\w\s\-]{1,40}?)(?:,|\.|which|that|\n|$)",
-
-    # "X, our proposed method"
-    r"([\w][\w\s\-]{1,40}?),\s+our (?:proposed|novel|new)\s+(?:method|model|approach|framework|system|algorithm)",
-
-    # "dubbed/termed/named X"
-    r"(?:dubbed|termed|named)\s+([\w][\w\s\-]{1,40}?)(?:,|\.|which|that|\n|$)",
-
-    # "called X" mid-sentence
-    r"(?:called|named)\s+([A-Z][A-Za-z0-9][A-Za-z0-9\s\-]{0,30}?)(?:,|\.|which|that|\n|$)",
+EVAL_PHRASES = [
+    r"evaluated?\s+on\s+([\w][\w\s\-]{1,40}?)(?:\s+dataset|\s+benchmark)?(?:\.|,|;|\n|$)",
+    r"benchmarked?\s+on\s+([\w][\w\s\-]{1,40}?)(?:\s+dataset|\s+benchmark)?(?:\.|,|;|\n|$)",
+    r"tested?\s+on\s+([\w][\w\s\-]{1,40}?)(?:\s+dataset|\s+benchmark)?(?:\.|,|;|\n|$)",
+    r"(?:using|with)\s+the\s+([\w][\w\s\-]{1,30}?)\s+(?:dataset|benchmark|corpus)(?:\.|,|;|\n|$)",
 ]
 
-PROPOSAL_BLOCKLIST = {
-    "a", "an", "the", "our", "this", "that", "we", "it",
-    "new", "novel", "simple", "efficient", "effective",
-    "large", "small", "deep", "neural", "network", "model",
-    "method", "approach", "framework", "system", "algorithm",
-    "technique", "strategy", "solution", "architecture",
-    "null", "none", "unknown",   # ← catch LLM bleed-through
+# Names shorter than this are likely noise (acronyms of 1 char, stray words)
+MIN_NAME_LEN = 2
+# Names longer than this are likely sentence fragments
+MAX_NAME_WORDS = 6
+
+# Common words that slip through dependency parsing — discard them
+NOISE = {
+    "a", "an", "the", "our", "this", "that", "we", "it", "which",
+    "new", "novel", "simple", "efficient", "effective", "large", "small",
+    "deep", "neural", "network", "model", "method", "approach",
+    "framework", "system", "algorithm", "technique", "architecture",
+    "solution", "strategy", "paper", "work", "study", "analysis",
+    "null", "none", "unknown", "not", "several", "various",
 }
 
 
-def _clean_proposals(matches: List[str]) -> List[str]:
-    cleaned = []
-    for m in matches:
-        m = m.strip().rstrip(".,")
-        words = m.split()
+# ── Core extraction ───────────────────────────────────────────────────────────
 
-        if len(m) < 2 or len(words) > 6:
+def _clean(name: str) -> Optional[str]:
+    """Normalise and validate a candidate name."""
+    name = name.strip().rstrip(".,;:()")
+    words = name.split()
+
+    # Strip leading noise words
+    while words and words[0].lower() in NOISE:
+        words = words[1:]
+    if not words:
+        return None
+
+    name = " ".join(words)
+
+    if len(name) < MIN_NAME_LEN:
+        return None
+    if len(words) > MAX_NAME_WORDS:
+        return None
+    if name.lower() in NOISE:
+        return None
+
+    return name
+
+
+def _extract_proposed_spacy(doc) -> List[str]:
+    """
+    Walk the dependency tree looking for:
+      subject=we/this paper  +  verb=PROPOSAL_VERB  +  object=<name>
+
+    This catches "we propose X", "this paper introduces X",
+    "we call our method X", regardless of surrounding words.
+    """
+    candidates = []
+
+    for token in doc:
+        if token.lemma_.lower() not in PROPOSAL_VERBS:
             continue
 
-        # Strip leading conjunction/verb leakage
-        while words and words[0].lower() in {
-            "and", "or", "the", "a", "an", "also", "here",
-            "release", "develop", "present", "propose", "introduce",
-        }:
-            words = words[1:]
-        if not words:
+        # Check subject is first-person or "this paper/work"
+        subj_ok = False
+        for child in token.children:
+            if child.dep_ in ("nsubj", "nsubjpass"):
+                if child.text.lower() in ("we", "our", "i"):
+                    subj_ok = True
+                elif child.text.lower() in ("paper", "work", "study"):
+                    subj_ok = True
+                # "this paper proposes X"
+                elif child.text.lower() == "this":
+                    subj_ok = True
+
+        if not subj_ok:
             continue
 
-        m = " ".join(words)
+        # Collect direct objects and their noun phrase spans
+        for child in token.children:
+            if child.dep_ in ("dobj", "obj", "attr", "oprd"):
+                # Get the full noun phrase
+                end_i = child.right_edge.i + 1
+                for token in child.sent[child.i: child.right_edge.i + 1]:
+                    if token.dep_ in ("prep", "relcl", "advcl") and token.i > child.i:
+                        end_i = token.i
+                        break
+                span = child.sent[child.left_edge.i: end_i]
+                name = _clean(span.text)
+                if name:
+                    candidates.append(name)
 
-        if m.lower() in PROPOSAL_BLOCKLIST:
-            continue
-        if words[0].lower() in PROPOSAL_BLOCKLIST:
-            continue
-
-        cleaned.append(m)
-
-    return list(dict.fromkeys(cleaned))
+    return list(dict.fromkeys(candidates))
 
 
-def extract_layer1(abstract: str) -> Dict:
-    if not abstract or not abstract.strip():
-        return {
-            "proposed_methods": [],
-            "used_methods": [],
-            "datasets": [],
-            "tasks": [],
-            "needs_llm": False,   # empty abstract → don't waste LLM call
+def _extract_proposed_regex(text: str) -> List[str]:
+    """
+    Fallback regex for proposal patterns — catches parenthetical acronyms
+    like "we propose Long Name (ACRONYM)" which spaCy often misses.
+    """
+    patterns = [
+        # "we propose/introduce/present Long Name (ACRONYM)"
+        r"[Ww]e\s+(?:propose|present|introduce|develop|describe|build|release)\s+"
+        r"[\w][\w\s\-]{1,60}?\(([A-Z][A-Za-z0-9\-]{1,20})\)",
+
+        # "we propose X," or "we propose X which/that"
+        r"[Ww]e\s+(?:propose|present|introduce|develop|describe|build|release)\s+"
+        r"([\w][\w\s\-]{1,40}?)(?:,|\s+which|\s+that|\s+—|\.|$)",
+
+        # "this paper proposes X"
+        r"[Tt]his\s+(?:paper|work)\s+(?:proposes|presents|introduces|develops)\s+"
+        r"([\w][\w\s\-]{1,40}?)(?:,|\s+which|\s+that|\.|$)",
+    ]
+    candidates = []
+    for pattern in patterns:
+        for match in re.finditer(pattern, text):
+            name = _clean(match.group(1))
+            if name:
+                candidates.append(name)
+    return list(dict.fromkeys(candidates))
+
+
+def _extract_datasets_regex(text: str) -> List[str]:
+    """
+    Extract dataset names from evaluation sentences.
+    Uses sentence patterns, not a vocabulary list.
+    """
+    candidates = []
+    for pattern in EVAL_PHRASES:
+        for match in re.finditer(pattern, text, re.IGNORECASE):
+            name = _clean(match.group(1))
+            if name:
+                candidates.append(name)
+    return list(dict.fromkeys(candidates))
+
+
+# ── Public API ────────────────────────────────────────────────────────────────
+
+def extract(abstract: str) -> Dict:
+    """
+    Extract structured information from a paper abstract.
+
+    Returns:
+        {
+            "proposed_methods": [...],   # names of methods/models proposed
+            "datasets":         [...],   # datasets used for evaluation
+            "source":           "spacy"  # always — no LLM fallback here
         }
-
-    text_normalised = " ".join(abstract.split())
-    text_lower = text_normalised.lower()
-
-    found_methods  = [m for m in METHODS  if m.lower() in text_lower]
-    found_datasets = [d for d in DATASETS if d.lower() in text_lower]
-    found_tasks    = [t for t in TASKS    if t.lower() in text_lower]
-
-    proposed = []
-    for pattern in PROPOSAL_PATTERNS:
-        matches = re.findall(pattern, text_normalised, re.IGNORECASE)
-        proposed.extend(matches)
-    proposed = _clean_proposals(proposed)
-
-    word_count = len(text_normalised.split())
-    needs_llm = len(proposed) == 0 and word_count > 30
-
-    return {
-        "proposed_methods": proposed,
-        "used_methods":     found_methods,
-        "datasets":         found_datasets,
-        "tasks":            found_tasks,
-        "needs_llm":        needs_llm,
-    }
-
-
-# ─── Layer 3: LLM Extraction ─────────────────────────────────────────────────
-
-# Tighter prompt — explicitly penalises guessing
-EXTRACTION_PROMPT = """\
-You are extracting structured data from an AI research paper abstract.
-Respond ONLY with valid JSON. No markdown, no explanation, no preamble.
-
-{{
-  "proposed_method": null,
-  "baseline_methods": [],
-  "datasets": [],
-  "task": null,
-  "improves_on": null
-}}
-
-Rules (read carefully):
-- proposed_method: ONLY if the abstract explicitly says the paper proposes/introduces/presents a named method or model. Must be a SHORT identifier (e.g. "FlashAttention", "GPT-3"). If no named method is clearly proposed, return null.
-- baseline_methods: ONLY method names explicitly mentioned in the abstract. Max 3. Empty list if none.
-- datasets: ONLY dataset names explicitly mentioned (e.g. "ImageNet", "GLUE"). Empty list if none.
-- task: ONE short phrase for the problem being solved. null if unclear.
-- improves_on: ONLY if the abstract explicitly says this work improves on a specific named prior method. null otherwise.
-
-DO NOT guess or infer. If unsure → null or empty list.
-DO NOT return the string "null" — use JSON null (no quotes).
-
-Abstract:
-{abstract}"""
-
-
-def _sanitise_llm_output(raw: dict) -> dict:
     """
-    Clean LLM output before using it.
-    Handles: string "null", empty strings, self-referential values.
-    """
-    NULL_STRINGS = {"null", "none", "n/a", "unknown", "", "not mentioned",
-                    "not applicable", "not specified"}
+    empty = {"proposed_methods": [], "datasets": [], "source": "spacy"}
 
-    def clean_str(v) -> Optional[str]:
-        if v is None:
-            return None
-        v = str(v).strip()
-        if v.lower() in NULL_STRINGS:
-            return None
-        # Reject if it looks like a sentence (too long to be a name)
-        if len(v.split()) > 6:
-            return None
-        return v
-
-    def clean_list(v) -> List[str]:
-        if not v or not isinstance(v, list):
-            return []
-        result = []
-        for item in v:
-            cleaned = clean_str(item)
-            if cleaned:
-                result.append(cleaned)
-        return result[:3]  # hard cap at 3
-
-    proposed  = clean_str(raw.get("proposed_method"))
-    improves  = clean_str(raw.get("improves_on"))
-    baselines = clean_list(raw.get("baseline_methods"))
-    datasets  = clean_list(raw.get("datasets"))
-    task      = clean_str(raw.get("task"))
-
-    # Prevent self-loop: improves_on must differ from proposed_method
-    if improves and proposed and improves.lower() == proposed.lower():
-        improves = None
-
-    # Prevent improves_on from being a hallucination that matches proposed
-    # If proposed is None there's nothing to improve on
-    if proposed is None:
-        improves = None
-
-    return {
-        "proposed_method":  proposed,
-        "baseline_methods": baselines,
-        "datasets":         datasets,
-        "task":             task,
-        "improves_on":      improves,
-    }
-
-
-def extract_layer3(abstract: str, client: together.Together) -> dict:
-    empty = {
-        "proposed_method":  None,
-        "baseline_methods": [],
-        "datasets":         [],
-        "task":             None,
-        "improves_on":      None,
-    }
-
-    try:
-        response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            max_tokens=300,
-            messages=[{
-                "role": "user",
-                "content": EXTRACTION_PROMPT.format(
-                    abstract=abstract[:1500]
-                )
-            }]
-        )
-
-        text = response.choices[0].message.content.strip()
-
-        # Strip markdown fences
-        if "```" in text:
-            text = re.sub(r"^```(?:json)?\n?", "", text)
-            text = re.sub(r"\n?```$", "", text)
-
-        raw = json.loads(text)
-        return _sanitise_llm_output(raw)
-
-    except (json.JSONDecodeError, KeyError, Exception) as e:
-        logger.warning(f"LLM extraction failed: {e}")
+    if not abstract or not abstract.strip():
         return empty
 
+    text = " ".join(abstract.split())   # normalise whitespace
 
-# ─── Combined Pipeline ────────────────────────────────────────────────────────
+    # ── spaCy pass ────────────────────────────────────────────────────────────
+    proposed = []
+    if _nlp is not None:
+        try:
+            doc = _nlp(text[:1000])   # cap at 1000 chars to keep it fast
+            proposed = _extract_proposed_spacy(doc)
+        except Exception as e:
+            logger.warning(f"spaCy parse failed: {e}")
 
-def extract(abstract: str, client=None) -> Dict:
-    l1 = extract_layer1(abstract)
+    # ── Regex fallback for proposals (catches acronyms spaCy misses) ──────────
+    regex_proposed = _extract_proposed_regex(text)
 
-    if l1["needs_llm"] and client is not None:
-        l3 = extract_layer3(abstract, client)
-        return {
-            "proposed_methods": [l3["proposed_method"]] if l3["proposed_method"] else [],
-            "used_methods":     list(dict.fromkeys(l3["baseline_methods"] + l1["used_methods"])),
-            "datasets":         list(dict.fromkeys(l3["datasets"] + l1["datasets"])),
-            "tasks":            [l3["task"]] if l3["task"] else l1["tasks"],
-            "improves_on":      l3["improves_on"],
-            "source":           "llm",
-        }
+    # Merge, dedup, keep spaCy results first (higher confidence)
+    all_proposed = list(dict.fromkeys(proposed + regex_proposed))
+
+    # ── Dataset extraction (regex only — dependency parse adds little here) ───
+    datasets = _extract_datasets_regex(text)
 
     return {
-        "proposed_methods": l1["proposed_methods"],
-        "used_methods":     l1["used_methods"],
-        "datasets":         l1["datasets"],
-        "tasks":            l1["tasks"],
-        "improves_on":      None,
-        "source":           "rule_based",
+        "proposed_methods": all_proposed,
+        "datasets":         datasets,
+        "source":           "spacy",
     }

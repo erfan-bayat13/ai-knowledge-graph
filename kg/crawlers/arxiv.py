@@ -202,7 +202,7 @@ class ArxivCrawler(BaseCrawler):
 
 if __name__ == "__main__":
     async def main():
-        crawler = ArxivCrawler(max_papers_per_feed=50)
+        crawler = ArxivCrawler(max_papers_per_feed=100)
         result = await crawler.run()
         print(f"Done: {result}")
 
