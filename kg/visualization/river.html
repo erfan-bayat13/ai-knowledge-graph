@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- kg/visualization/river.html -->
+<!-- Phase 4b: D3.js Research River — branching stream diagram of citation lineage -->
+<!-- Data loaded from river_data.json (exported by: kg flow <arxiv_id>) -->
+<!-- Shows: citation ancestry tree with divergence annotations, one node per paper -->
+<!-- Branches are colored by topic cluster; divergence nodes marked in orange -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Research River</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f12; color: #e0e0e0; font-family: system-ui, sans-serif; overflow: hidden; }
+  #header { padding: 12px 20px; border-bottom: 1px solid #222; display: flex; align-items: center; gap: 16px; }
+  #header h1 { font-size: 15px; font-weight: 600; color: #fff; }
+  #root-title { font-size: 12px; color: #666; max-width: 500px; overflow: hidden;
+                text-overflow: ellipsis; white-space: nowrap; }
+  #canvas { width: 100vw; height: calc(100vh - 46px); }
+  .node rect { rx: 4; ry: 4; cursor: pointer; }
+  .node text { pointer-events: none; font-size: 11px; fill: #e0e0e0; }
+  .node.root rect { stroke: #ffffff44; stroke-width: 1.5; }
+  .node.divergence rect { stroke: #ff8c42; stroke-width: 1.5; }
+  .link { fill: none; stroke: #333; stroke-width: 1.5; }
+  .link.diverged { stroke: #ff8c4244; stroke-dasharray: 4 3; }
+  #tooltip { position: absolute; background: #1c1c22; border: 1px solid #333; border-radius: 6px;
+             padding: 8px 12px; font-size: 11px; pointer-events: none; max-width: 300px;
+             line-height: 1.5; display: none; }
+  #legend { position: absolute; bottom: 20px; left: 20px; background: #1c1c2288; border-radius: 6px;
+            padding: 10px 14px; font-size: 11px; }
+  .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .legend-box { width: 14px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  #no-data { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+             text-align: center; color: #555; }
+  #no-data code { background: #1c1c22; padding: 2px 6px; border-radius: 3px; color: #888; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Research River</h1>
+  <div id="root-title">Loading...</div>
+</div>
+<svg id="canvas"></svg>
+<div id="tooltip"></div>
+<div id="legend">
+  <div class="legend-row"><div class="legend-box" style="border:1.5px solid #ff8c42;background:transparent"></div> Divergence point</div>
+  <div class="legend-row"><div class="legend-box" style="border:1.5px solid #fff4;background:transparent"></div> Root paper</div>
+  <div class="legend-row"><div style="width:14px;height:0;border-top:1.5px dashed #ff8c4288"></div> Diverged branch</div>
+</div>
+
+<script>
+const DATA_URL = "river_data.json";
+const CLUSTER_COLORS = d3.schemeTableau10.concat(d3.schemePastel1);
+
+function clusterColor(cluster_id) {
+  if (cluster_id == null || cluster_id < 0) return "#555";
+  return CLUSTER_COLORS[cluster_id % CLUSTER_COLORS.length];
+}
+
+async function loadData() {
+  try {
+    const resp = await fetch(DATA_URL);
+    if (!resp.ok) throw new Error("not found");
+    return await resp.json();
+  } catch (e) {
+    document.getElementById("canvas").innerHTML =
+      `<div id="no-data" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#555">
+        <p>No data loaded.</p><p>Run: <code>kg flow &lt;arxiv_id&gt;</code></p>
+      </div>`;
+    return null;
+  }
+}
+
+function flattenTree(node, parent = null, depth = 0) {
+  const result = [{ ...node, _parent: parent, _depth: depth }];
+  (node.children || []).forEach(child => result.push(...flattenTree(child, node, depth + 1)));
+  return result;
+}
+
+function buildHierarchy(data) {
+  // Convert our flat dict with children arrays into a d3 hierarchy
+  return d3.hierarchy(data, d => d.children);
+}
+
+async function main() {
+  const data = await loadData();
+  if (!data) return;
+
+  document.getElementById("root-title").textContent = data.title || data.arxiv_id || "";
+
+  const W = window.innerWidth, H = window.innerHeight - 46;
+  const svg = d3.select("#canvas").attr("viewBox", `0 0 ${W} ${H}`);
+  const g   = svg.append("g");
+
+  svg.call(d3.zoom().scaleExtent([0.2, 4]).on("zoom", e => g.attr("transform", e.transform)));
+
+  const root = buildHierarchy(data);
+
+  // Tree layout — horizontal (left = root, right = ancestors)
+  const NODE_W = 200, NODE_H = 44, V_GAP = 16;
+  const treeLayout = d3.tree()
+    .nodeSize([NODE_H + V_GAP, NODE_W + 60])
+    .separation((a, b) => a.parent === b.parent ? 1 : 1.5);
+
+  treeLayout(root);
+
+  // Center vertically
+  const nodes = root.descendants();
+  const links = root.links();
+  const minY   = d3.min(nodes, d => d.x);
+  const offsetY = H / 2 - minY;
+  const offsetX = 80;
+
+  // ── Draw links ────────────────────────────────────────────────────────────────
+  const linkGen = d3.linkHorizontal()
+    .x(d => d.y + offsetX)
+    .y(d => d.x + offsetY);
+
+  g.selectAll(".link")
+    .data(links)
+    .join("path")
+      .attr("class", d => {
+        const score = d.target.data.divergence_score;
+        return "link" + (score && score > 0.3 ? " diverged" : "");
+      })
+      .attr("d", linkGen);
+
+  // ── Draw nodes ────────────────────────────────────────────────────────────────
+  const node = g.selectAll(".node")
+    .data(nodes)
+    .join("g")
+      .attr("class", d => {
+        let cls = "node";
+        if (d.depth === 0) cls += " root";
+        if (d.data.divergence_score) cls += " divergence";
+        return cls;
+      })
+      .attr("transform", d => `translate(${d.y + offsetX},${d.x + offsetY})`);
+
+  node.append("rect")
+    .attr("x",      -(NODE_W / 2))
+    .attr("y",      -(NODE_H / 2))
+    .attr("width",  NODE_W)
+    .attr("height", NODE_H)
+    .attr("fill",   d => clusterColor(d.data.cluster_id))
+    .attr("opacity", 0.25);
+
+  // Year badge
+  node.append("text")
+    .attr("x", -(NODE_W / 2) + 6)
+    .attr("y", -(NODE_H / 2) + 13)
+    .attr("fill", d => clusterColor(d.data.cluster_id))
+    .attr("font-size", 10)
+    .text(d => (d.data.published_date || "").slice(0, 4));
+
+  // Title (wrap to 2 lines)
+  node.append("text")
+    .attr("x", -(NODE_W / 2) + 6)
+    .attr("y", -(NODE_H / 2) + 26)
+    .each(function(d) {
+      const el    = d3.select(this);
+      const title = d.data.title || d.data.arxiv_id || "";
+      const words = title.split(" ");
+      let line = "", lineNum = 0;
+      const maxCharsPerLine = 26;
+      words.forEach(w => {
+        if ((line + w).length > maxCharsPerLine && lineNum < 1) {
+          el.append("tspan").attr("x", -(NODE_W / 2) + 6).attr("dy", 0).text(line.trim());
+          line = w + " ";
+          lineNum++;
+        } else {
+          line += w + " ";
+        }
+      });
+      el.append("tspan").attr("x", -(NODE_W / 2) + 6).attr("dy", 13)
+        .text(line.trim().slice(0, 30) + (line.trim().length > 30 ? "…" : ""));
+    });
+
+  // ── Tooltip ───────────────────────────────────────────────────────────────────
+  const tooltip = document.getElementById("tooltip");
+
+  node.on("mousemove", (event, d) => {
+    tooltip.style.display = "block";
+    tooltip.style.left    = (event.pageX + 12) + "px";
+    tooltip.style.top     = (event.pageY + 12) + "px";
+    const score = d.data.rank_score != null ? d.data.rank_score.toFixed(2) : "—";
+    const div   = d.data.divergence_score ? ` &nbsp; divergence: ${d.data.divergence_score.toFixed(2)}` : "";
+    tooltip.innerHTML =
+      `<strong>${d.data.title || d.data.arxiv_id}</strong><br>` +
+      `${(d.data.published_date||"").slice(0,10)} &nbsp; score: ${score}${div}`;
+  }).on("mouseleave", () => { tooltip.style.display = "none"; });
+
+  node.on("click", (event, d) => {
+    window.open(`https://arxiv.org/abs/${d.data.arxiv_id}`, "_blank");
+  });
+
+  // ── Initial centering ─────────────────────────────────────────────────────────
+  const rootNode = nodes[0];
+  const tx = W / 2 - (rootNode.y + offsetX);
+  const ty = H / 2 - (rootNode.x + offsetY);
+  svg.call(
+    d3.zoom().transform,
+    d3.zoomIdentity.translate(tx, ty)
+  );
+}
+
+main();
+</script>
+</body>
+</html>

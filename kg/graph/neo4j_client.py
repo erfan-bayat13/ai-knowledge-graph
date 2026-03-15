@@ -1,9 +1,12 @@
 # kg/graph/neo4j_client.py
+# CHANGED (Phase 1): added Institution node, CITES edge, rank_score property on Paper
+# CHANGED (Phase 2): replaced Chunk-based vector index with Paper-level embedding index (768-dim cosine)
+# CHANGED (Phase 3): added Topic node, BELONGS_TO edge, trend_score on Topic
+# CHANGED: removed Chunk/HAS_CHUNK/SIMILAR_TO — embeddings now live on Paper, not Chunk nodes
 #
-# Clean schema — replaces the old Method/Dataset/Task/enrichment mess.
-#
-# Nodes:    Paper, Repo, Author, Chunk
-# Edges:    WRITTEN_BY, IMPLEMENTS, SIMILAR_TO, USES, EVALUATED_ON, PROPOSES
+# Target schema (from design doc):
+#   Nodes:    Paper, Author, Topic, Institution
+#   Edges:    WRITTEN_BY, CITES, BELONGS_TO, AFFILIATED_WITH
 
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
@@ -17,16 +20,14 @@ logger = logging.getLogger(__name__)
 class Neo4jClient:
     def __init__(self):
         settings = get_settings()
-        self.uri = settings.neo4j_uri
-        self.user = settings.neo4j_user
+        self.uri      = settings.neo4j_uri
+        self.user     = settings.neo4j_user
         self.password = settings.neo4j_password
-        self._driver = None
+        self._driver  = None
 
     def connect(self):
         try:
-            self._driver = GraphDatabase.driver(
-                self.uri, auth=(self.user, self.password)
-            )
+            self._driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
             self._driver.verify_connectivity()
             logger.info("Connected to Neo4j")
         except ServiceUnavailable as e:
@@ -51,21 +52,27 @@ class Neo4jClient:
             result = session.run(query, parameters or {})
             return [record.data() for record in result]
 
-    # ── Schema ────────────────────────────────────────────────────────────────
+    # ── Schema ──────────────────────────────────────────────────────────────────
 
     def setup_schema(self):
-        """Create constraints and indexes for the clean schema."""
+        """Create all constraints and indexes for the unified design schema."""
         constraints = [
-            "CREATE CONSTRAINT paper_arxiv_id  IF NOT EXISTS FOR (p:Paper)  REQUIRE p.arxiv_id IS UNIQUE",
-            "CREATE CONSTRAINT author_name      IF NOT EXISTS FOR (a:Author) REQUIRE a.name IS UNIQUE",
-            "CREATE CONSTRAINT repo_url         IF NOT EXISTS FOR (r:Repo)   REQUIRE r.url IS UNIQUE",
-            "CREATE CONSTRAINT method_name      IF NOT EXISTS FOR (m:Method) REQUIRE m.name IS UNIQUE",
-            "CREATE CONSTRAINT dataset_name     IF NOT EXISTS FOR (d:Dataset) REQUIRE d.name IS UNIQUE",
+            # Paper uniqueness
+            "CREATE CONSTRAINT paper_arxiv_id   IF NOT EXISTS FOR (p:Paper)       REQUIRE p.arxiv_id IS UNIQUE",
+            # Author uniqueness
+            "CREATE CONSTRAINT author_name       IF NOT EXISTS FOR (a:Author)      REQUIRE a.name IS UNIQUE",
+            # Topic uniqueness (Phase 3)
+            "CREATE CONSTRAINT topic_name        IF NOT EXISTS FOR (t:Topic)       REQUIRE t.name IS UNIQUE",
+            # Institution uniqueness (Phase 1)
+            "CREATE CONSTRAINT institution_name  IF NOT EXISTS FOR (i:Institution) REQUIRE i.name IS UNIQUE",
         ]
         indexes = [
-            "CREATE INDEX paper_title     IF NOT EXISTS FOR (p:Paper)  ON (p.title)",
-            "CREATE INDEX paper_published IF NOT EXISTS FOR (p:Paper)  ON (p.published_date)",
-            "CREATE VECTOR INDEX chunk_embedding IF NOT EXISTS FOR (c:Chunk) ON (c.embedding) OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}}",
+            # Property indexes for fast lookups
+            "CREATE INDEX paper_published  IF NOT EXISTS FOR (p:Paper) ON (p.published_date)",
+            "CREATE INDEX paper_rank       IF NOT EXISTS FOR (p:Paper) ON (p.rank_score)",
+            # Paper-level vector index (Phase 2) — replaces old Chunk chunk_embedding index
+            "CREATE VECTOR INDEX paper_embedding IF NOT EXISTS FOR (p:Paper) ON (p.embedding) "
+            "OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}}",
         ]
         for q in constraints + indexes:
             try:
@@ -75,12 +82,12 @@ class Neo4jClient:
         logger.info("Schema setup complete")
 
     def nuke_and_reset(self):
-        """Delete everything and rebuild schema. Use during development only."""
+        """Delete everything and rebuild schema. Development use only."""
         self.run_query("MATCH (n) DETACH DELETE n")
         logger.warning("All nodes and edges deleted")
         self.setup_schema()
 
-    # ── Paper ─────────────────────────────────────────────────────────────────
+    # ── Paper ───────────────────────────────────────────────────────────────────
 
     def create_paper(self, paper: dict) -> bool:
         query = """
@@ -97,7 +104,8 @@ class Neo4jClient:
     def get_all_papers(self, batch_size: int = 100, skip: int = 0) -> List[dict]:
         query = """
         MATCH (p:Paper)
-        RETURN p.arxiv_id AS arxiv_id, p.title AS title, p.abstract AS abstract
+        RETURN p.arxiv_id AS arxiv_id, p.title AS title, p.abstract AS abstract,
+               p.published_date AS published_date
         ORDER BY p.arxiv_id
         SKIP $skip LIMIT $batch_size
         """
@@ -107,17 +115,48 @@ class Neo4jClient:
         result = self.run_query("MATCH (p:Paper) RETURN count(p) AS count")
         return result[0]["count"] if result else 0
 
-    def get_papers_without_chunks(self, limit: int = 500) -> List[dict]:
-        """Return papers that haven't been embedded yet."""
+    def get_papers_without_embedding(self, limit: int = 500) -> List[dict]:
+        """Return papers that don't yet have a paper-level embedding (Phase 2)."""
         query = """
         MATCH (p:Paper)
-        WHERE NOT (p)-[:HAS_CHUNK]->(:Chunk)
+        WHERE p.embedding IS NULL
         RETURN p.arxiv_id AS arxiv_id, p.title AS title, p.abstract AS abstract
         LIMIT $limit
         """
         return self.run_query(query, {"limit": limit})
 
-    # ── Author ────────────────────────────────────────────────────────────────
+    def set_paper_embedding(self, arxiv_id: str, embedding: List[float]) -> bool:
+        """Store a 768-dim SPECTER2 embedding on a Paper node (Phase 2)."""
+        result = self.run_query("""
+            MATCH (p:Paper {arxiv_id: $arxiv_id})
+            SET p.embedding = $embedding
+            RETURN p.arxiv_id AS id
+        """, {"arxiv_id": arxiv_id, "embedding": embedding})
+        return len(result) > 0
+
+    def get_all_papers_with_embeddings(self) -> List[dict]:
+        """Return all papers that have embeddings — used for clustering (Phase 3)."""
+        query = """
+        MATCH (p:Paper)
+        WHERE p.embedding IS NOT NULL
+        RETURN p.arxiv_id AS arxiv_id, p.title AS title,
+               p.embedding AS embedding, p.cluster_id AS cluster_id,
+               p.published_date AS published_date, p.rank_score AS rank_score
+        """
+        return self.run_query(query)
+
+    def vector_search_papers(self, query_vector: List[float], top_k: int = 10) -> List[dict]:
+        """Semantic search: find papers nearest to a query vector (Phase 2)."""
+        query = """
+        CALL db.index.vector.queryNodes('paper_embedding', $top_k, $query_vector)
+        YIELD node, score
+        RETURN node.arxiv_id AS arxiv_id, node.title AS title,
+               node.published_date AS published_date, score
+        ORDER BY score DESC
+        """
+        return self.run_query(query, {"top_k": top_k, "query_vector": query_vector})
+
+    # ── Author ──────────────────────────────────────────────────────────────────
 
     def create_author(self, name: str) -> bool:
         query = """
@@ -136,7 +175,114 @@ class Neo4jClient:
         """
         return len(self.run_query(query, {"arxiv_id": arxiv_id, "author_name": author_name})) > 0
 
-    # ── Repo ──────────────────────────────────────────────────────────────────
+    # ── Topic (Phase 3) ─────────────────────────────────────────────────────────
+
+    def create_or_update_topic(self, name: str, trend_score: float = 0.0, paper_count: int = 0) -> bool:
+        """Upsert a Topic node with trend_score and paper_count."""
+        result = self.run_query("""
+            MERGE (t:Topic {name: $name})
+            SET t.trend_score = $trend_score,
+                t.paper_count = $paper_count,
+                t.updated_at  = timestamp()
+            RETURN t.name AS name
+        """, {"name": name, "trend_score": trend_score, "paper_count": paper_count})
+        return len(result) > 0
+
+    def link_paper_to_topic(self, arxiv_id: str, topic_name: str, cluster_id: int) -> bool:
+        """BELONGS_TO edge from Paper to Topic, also set cluster_id on Paper."""
+        result = self.run_query("""
+            MATCH (p:Paper {arxiv_id: $arxiv_id})
+            MATCH (t:Topic {name: $topic_name})
+            MERGE (p)-[:BELONGS_TO]->(t)
+            SET p.cluster_id = $cluster_id
+            RETURN p.arxiv_id AS id
+        """, {"arxiv_id": arxiv_id, "topic_name": topic_name, "cluster_id": cluster_id})
+        return len(result) > 0
+
+    # ── Institution (Phase 1) ───────────────────────────────────────────────────
+
+    def create_institution(self, name: str, ror_id: str = "") -> bool:
+        result = self.run_query("""
+            MERGE (i:Institution {name: $name})
+            SET i.ror_id = $ror_id
+            RETURN i.name AS name
+        """, {"name": name, "ror_id": ror_id})
+        return len(result) > 0
+
+    # ── Search ──────────────────────────────────────────────────────────────────
+
+    def search_papers(self, query_text: str, limit: int = 10) -> List[dict]:
+        query = """
+        MATCH (p:Paper)
+        WHERE toLower(p.title)    CONTAINS toLower($query_text)
+           OR toLower(p.abstract) CONTAINS toLower($query_text)
+        RETURN p.arxiv_id AS arxiv_id, p.title AS title,
+               p.published_date AS published_date, p.url AS url,
+               p.rank_score AS rank_score
+        ORDER BY p.published_date DESC
+        LIMIT $limit
+        """
+        return self.run_query(query, {"query_text": query_text, "limit": limit})
+
+    def get_top_papers(self, limit: int = 20) -> List[dict]:
+        """Return papers ranked by rank_score (Phase 1)."""
+        query = """
+        MATCH (p:Paper)
+        WHERE p.rank_score IS NOT NULL
+        RETURN p.arxiv_id AS arxiv_id, p.title AS title,
+               p.published_date AS published_date,
+               p.rank_score AS rank_score,
+               p.citation_count AS citation_count,
+               p.citation_velocity AS citation_velocity
+        ORDER BY p.rank_score DESC
+        LIMIT $limit
+        """
+        return self.run_query(query, {"limit": limit})
+
+    def get_cited_by(self, arxiv_id: str, limit: int = 20) -> List[dict]:
+        """Return papers in the graph that cite the given paper (Phase 1)."""
+        query = """
+        MATCH (citing:Paper)-[:CITES]->(p:Paper {arxiv_id: $arxiv_id})
+        RETURN citing.arxiv_id AS arxiv_id, citing.title AS title,
+               citing.published_date AS published_date,
+               citing.rank_score AS rank_score
+        ORDER BY citing.rank_score DESC NULLS LAST
+        LIMIT $limit
+        """
+        return self.run_query(query, {"arxiv_id": arxiv_id, "limit": limit})
+
+    def get_citation_flow(self, arxiv_id: str, depth: int = 2) -> List[dict]:
+        """
+        Reverse citation traversal: find the intellectual ancestry of a paper (Phase 4).
+        Returns path nodes and depths for building the citation flow tree.
+        """
+        query = """
+        MATCH path = (start:Paper {arxiv_id: $arxiv_id})-[:CITES*1..$depth]->(ancestor:Paper)
+        RETURN [node IN nodes(path) | {
+            arxiv_id:       node.arxiv_id,
+            title:          node.title,
+            published_date: node.published_date,
+            rank_score:     node.rank_score,
+            cluster_id:     node.cluster_id,
+            embedding:      node.embedding
+        }] AS path_nodes,
+        length(path) AS depth
+        ORDER BY depth
+        LIMIT 500
+        """
+        return self.run_query(query, {"arxiv_id": arxiv_id, "depth": depth})
+
+    def get_paper_neighbourhood(self, arxiv_id: str, depth: int = 2) -> List[dict]:
+        """Return all nodes reachable from a paper within depth hops (legacy, kept for compatibility)."""
+        query = """
+        MATCH path = (start:Paper {arxiv_id: $arxiv_id})-[*1..$depth]-(neighbour)
+        RETURN [node IN nodes(path) | {labels: labels(node), props: properties(node)}] AS nodes,
+               [rel  IN relationships(path) | type(rel)] AS rel_types
+        LIMIT 200
+        """
+        return self.run_query(query, {"arxiv_id": arxiv_id, "depth": depth})
+
+    # ── Repo (GitHub, post-MVP) ─────────────────────────────────────────────────
 
     def create_repo(self, repo: dict) -> bool:
         query = """
@@ -152,7 +298,6 @@ class Neo4jClient:
         return len(self.run_query(query, repo)) > 0
 
     def link_repo_implements_paper(self, repo_url: str, arxiv_id: str) -> bool:
-        """Repo → IMPLEMENTS → Paper (high confidence: arXiv ID found in README)."""
         query = """
         MATCH (r:Repo  {url: $repo_url})
         MATCH (p:Paper {arxiv_id: $arxiv_id})
@@ -160,148 +305,3 @@ class Neo4jClient:
         RETURN r.url AS url
         """
         return len(self.run_query(query, {"repo_url": repo_url, "arxiv_id": arxiv_id})) > 0
-
-    def get_repos_without_readme_scan(self, limit: int = 200) -> List[dict]:
-        """Return repos where we haven't yet fetched the README."""
-        query = """
-        MATCH (r:Repo)
-        WHERE r.readme_scanned IS NULL
-        RETURN r.url AS url, r.name AS name
-        LIMIT $limit
-        """
-        return self.run_query(query, {"limit": limit})
-
-    def mark_repo_readme_scanned(self, repo_url: str) -> bool:
-        query = """
-        MATCH (r:Repo {url: $url})
-        SET r.readme_scanned = true
-        RETURN r.url AS url
-        """
-        return len(self.run_query(query, {"url": repo_url})) > 0
-
-    # ── Method / Dataset (spaCy extracted, high confidence only) ─────────────
-
-    def create_method(self, name: str) -> bool:
-        query = """
-        MERGE (m:Method {name: $name})
-        SET m.updated_at = timestamp()
-        RETURN m.name AS name
-        """
-        return len(self.run_query(query, {"name": name})) > 0
-
-    def create_dataset(self, name: str) -> bool:
-        query = """
-        MERGE (d:Dataset {name: $name})
-        SET d.updated_at = timestamp()
-        RETURN d.name AS name
-        """
-        return len(self.run_query(query, {"name": name})) > 0
-
-    def link_paper_proposes(self, arxiv_id: str, method_name: str) -> bool:
-        query = """
-        MATCH (p:Paper  {arxiv_id: $arxiv_id})
-        MATCH (m:Method {name: $method_name})
-        MERGE (p)-[:PROPOSES]->(m)
-        RETURN p.arxiv_id AS id
-        """
-        return len(self.run_query(query, {"arxiv_id": arxiv_id, "method_name": method_name})) > 0
-
-    def link_paper_uses(self, arxiv_id: str, method_name: str) -> bool:
-        query = """
-        MATCH (p:Paper  {arxiv_id: $arxiv_id})
-        MATCH (m:Method {name: $method_name})
-        MERGE (p)-[:USES]->(m)
-        RETURN p.arxiv_id AS id
-        """
-        return len(self.run_query(query, {"arxiv_id": arxiv_id, "method_name": method_name})) > 0
-
-    def link_paper_evaluated_on(self, arxiv_id: str, dataset_name: str) -> bool:
-        query = """
-        MATCH (p:Paper   {arxiv_id: $arxiv_id})
-        MATCH (d:Dataset {name: $dataset_name})
-        MERGE (p)-[:EVALUATED_ON]->(d)
-        RETURN p.arxiv_id AS id
-        """
-        return len(self.run_query(query, {"arxiv_id": arxiv_id, "dataset_name": dataset_name})) > 0
-
-    # ── Chunks + Embeddings ───────────────────────────────────────────────────
-
-    def create_chunk(self, arxiv_id: str, chunk_index: int, text: str, embedding: List[float]) -> bool:
-        chunk_id = f"{arxiv_id}_{chunk_index}"
-        
-        # Step 1: create the chunk node
-        self.run_query("""
-            MERGE (c:Chunk {id: $chunk_id})
-            SET c.text        = $text,
-                c.chunk_index = $chunk_index,
-                c.embedding   = $embedding,
-                c.updated_at  = timestamp()
-        """, {
-            "chunk_id":    chunk_id,
-            "text":        text,
-            "chunk_index": chunk_index,
-            "embedding":   embedding,
-        })
-
-        # Step 2: link to paper separately
-        result = self.run_query("""
-            MATCH (p:Paper {arxiv_id: $arxiv_id})
-            MATCH (c:Chunk {id: $chunk_id})
-            MERGE (p)-[:HAS_CHUNK]->(c)
-            RETURN c.id AS id
-        """, {
-            "arxiv_id": arxiv_id,
-            "chunk_id": chunk_id,
-        })
-        
-        return len(result) > 0
-
-    def link_similar_chunks(self, chunk_id_a: str, chunk_id_b: str, score: float) -> bool:
-        """Create SIMILAR_TO edge between two chunks."""
-        query = """
-        MATCH (a:Chunk {id: $chunk_id_a})
-        MATCH (b:Chunk {id: $chunk_id_b})
-        MERGE (a)-[s:SIMILAR_TO]->(b)
-        SET s.score = $score
-        RETURN a.id AS id
-        """
-        return len(self.run_query(query, {
-            "chunk_id_a": chunk_id_a,
-            "chunk_id_b": chunk_id_b,
-            "score":      score,
-        })) > 0
-
-    def get_all_chunks_with_embeddings(self) -> List[dict]:
-        """Return all chunks that have embeddings — used for similarity computation."""
-        query = """
-        MATCH (p:Paper)-[:HAS_CHUNK]->(c:Chunk)
-        WHERE c.embedding IS NOT NULL
-        RETURN c.id AS chunk_id, c.embedding AS embedding, p.arxiv_id AS arxiv_id
-        """
-        return self.run_query(query)
-
-    # ── Search ────────────────────────────────────────────────────────────────
-
-    def search_papers(self, query_text: str, limit: int = 10) -> List[dict]:
-        query = """
-        MATCH (p:Paper)
-        WHERE toLower(p.title)    CONTAINS toLower($query_text)
-           OR toLower(p.abstract) CONTAINS toLower($query_text)
-        RETURN p.arxiv_id AS arxiv_id, p.title AS title, p.published_date AS published_date, p.url AS url
-        ORDER BY p.published_date DESC
-        LIMIT $limit
-        """
-        return self.run_query(query, {"query_text": query_text, "limit": limit})
-
-    def get_paper_neighbourhood(self, arxiv_id: str, depth: int = 2) -> List[dict]:
-        """
-        Return all nodes reachable from a paper within `depth` hops.
-        Used for the research path visualization.
-        """
-        query = """
-        MATCH path = (start:Paper {arxiv_id: $arxiv_id})-[*1..$depth]-(neighbour)
-        RETURN [node IN nodes(path) | {labels: labels(node), props: properties(node)}] AS nodes,
-               [rel  IN relationships(path) | type(rel)] AS rel_types
-        LIMIT 200
-        """
-        return self.run_query(query, {"arxiv_id": arxiv_id, "depth": depth})

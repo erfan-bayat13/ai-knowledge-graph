@@ -1,3 +1,11 @@
+# kg/cli.py
+# CHANGED: rewrote to include all commands from Phases 1-4
+# CHANGED (Phase 1): added enrich, top, cited-by
+# CHANGED (Phase 2): added embed (run, search, similar)
+# CHANGED (Phase 3): added cluster (run, topic), updated trends to topic-based
+# CHANGED (Phase 4): added trace, flow, visualize
+# CHANGED: status command updated to reflect new node types (Topic, Institution, CITES edges)
+
 import typer
 from rich.console import Console
 from rich.table import Table
@@ -8,111 +16,63 @@ from kg.graph.neo4j_client import Neo4jClient
 
 app = typer.Typer(
     name="kg",
-    help="AI research knowledge graph — search papers, explore trends.",
+    help="AI Research Intelligence Platform — discover, explore, and map research papers.",
     no_args_is_help=True,
 )
 
 console = Console()
 
+# ── Import sub-apps ────────────────────────────────────────────────────────────
 
-@app.command()
-def search(
-    query: str = typer.Argument(..., help="Search term, e.g. 'LoRA'"),
-    limit: int = typer.Option(10, "--limit", "-n"),
-):
-    """Search papers by keyword (matches title + abstract)."""
-    db = Neo4jClient()
-    db.connect()
-    results = db.search_papers(query, limit=limit)
-    db.close()
+from kg.commands.search    import app as search_app
+from kg.commands.trends    import app as trends_app
+from kg.commands.top       import app as top_app
+from kg.commands.enrich    import app as enrich_app
+from kg.commands.cited_by  import app as cited_by_app
+from kg.commands.embed     import app as embed_app
+from kg.commands.cluster   import app as cluster_app
+from kg.commands.trace     import app as trace_app
+from kg.commands.flow      import app as flow_app
+from kg.commands.visualize import app as visualize_app
 
-    if not results:
-        console.print(f"\n[yellow]No papers found for:[/yellow] {query}\n")
-        raise typer.Exit()
-
-    table = Table(box=box.SIMPLE, show_header=True, header_style="bold")
-    table.add_column("Date", style="dim", width=12)
-    table.add_column("Title", min_width=40)
-    table.add_column("arXiv", style="cyan", width=16)
-
-    for r in results:
-        table.add_row(
-            (r.get("published_date") or "")[:10],
-            r.get("title") or "",
-            r.get("arxiv_id") or "",
-        )
-
-    console.print(f"\n[bold]Results for:[/bold] '{query}'  ({len(results)} papers)\n")
-    console.print(table)
+app.add_typer(search_app,    name="search",    help="Search papers by keyword")
+app.add_typer(trends_app,    name="trends",    help="Show trending research topics")
+app.add_typer(top_app,       name="top",       help="Top papers by rank score")
+app.add_typer(enrich_app,    name="enrich",    help="Enrich papers via Semantic Scholar + OpenAlex")
+app.add_typer(cited_by_app,  name="cited-by",  help="Show papers that cite a given paper")
+app.add_typer(embed_app,     name="embed",     help="SPECTER2 paper-level embeddings + semantic search")
+app.add_typer(cluster_app,   name="cluster",   help="Topic clustering with UMAP + HDBSCAN")
+app.add_typer(trace_app,     name="trace",     help="Print citation ancestry tree in terminal")
+app.add_typer(flow_app,      name="flow",      help="Open Research River citation flow visualization")
+app.add_typer(visualize_app, name="visualize", help="Export UMAP scatter data and open landscape view")
 
 
-@app.command()
-def trends(
-    days: int = typer.Option(30, "--days", "-d"),
-    limit: int = typer.Option(15, "--limit", "-n"),
-):
-    """Show trending methods and datasets in recent papers."""
-    since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
-
-    db = Neo4jClient()
-    db.connect()
-
-    methods = db.run_query("""
-        MATCH (p:Paper)-[:PROPOSES]->(m:Method)
-        WHERE p.published_date >= $since
-        RETURN m.name AS name, count(p) AS count
-        ORDER BY count DESC LIMIT $limit
-    """, {"since": since, "limit": limit})
-
-    datasets = db.run_query("""
-        MATCH (p:Paper)-[:EVALUATED_ON]->(d:Dataset)
-        WHERE p.published_date >= $since
-        RETURN d.name AS name, count(p) AS count
-        ORDER BY count DESC LIMIT $limit
-    """, {"since": since, "limit": limit})
-
-    db.close()
-
-    console.print(f"\n[bold]Trending (last {days} days)[/bold]\n")
-
-    if methods:
-        console.print("[bold cyan]Methods being proposed[/bold cyan]")
-        t = Table(box=box.SIMPLE, show_header=False)
-        t.add_column("Method", min_width=30)
-        t.add_column("Papers", style="dim", width=8)
-        for r in methods:
-            t.add_row(r["name"], str(r["count"]))
-        console.print(t)
-
-    if datasets:
-        console.print("[bold cyan]Datasets / benchmarks[/bold cyan]")
-        t = Table(box=box.SIMPLE, show_header=False)
-        t.add_column("Dataset", min_width=30)
-        t.add_column("Papers", style="dim", width=8)
-        for r in datasets:
-            t.add_row(r["name"], str(r["count"]))
-        console.print(t)
-
-    if not methods and not datasets:
-        console.print("[yellow]No enriched data yet. Run the enrichment pipeline first.[/yellow]\n")
-
+# ── Status command (standalone, not a sub-app) ─────────────────────────────────
 
 @app.command()
 def status():
-    """Show how many papers, methods, and edges are in the graph."""
+    """Show graph counts: papers, authors, topics, institutions, and edges."""
     db = Neo4jClient()
     db.connect()
-    papers   = db.run_query("MATCH (p:Paper)   RETURN count(p) AS n")[0]["n"]
-    methods  = db.run_query("MATCH (m:Method)  RETURN count(m) AS n")[0]["n"]
-    datasets = db.run_query("MATCH (d:Dataset) RETURN count(d) AS n")[0]["n"]
-    edges    = db.run_query("MATCH ()-[r:PROPOSES|EVALUATED_ON]->() RETURN count(r) AS n")[0]["n"]
+
+    papers       = db.run_query("MATCH (p:Paper)       RETURN count(p) AS n")[0]["n"]
+    authors      = db.run_query("MATCH (a:Author)      RETURN count(a) AS n")[0]["n"]
+    topics       = db.run_query("MATCH (t:Topic)       RETURN count(t) AS n")[0]["n"]
+    institutions = db.run_query("MATCH (i:Institution) RETURN count(i) AS n")[0]["n"]
+    cites_edges  = db.run_query("MATCH ()-[r:CITES]->()       RETURN count(r) AS n")[0]["n"]
+    belongs_to   = db.run_query("MATCH ()-[r:BELONGS_TO]->()  RETURN count(r) AS n")[0]["n"]
+    enriched     = db.run_query("MATCH (p:Paper) WHERE p.rank_score IS NOT NULL RETURN count(p) AS n")[0]["n"]
+    embedded     = db.run_query("MATCH (p:Paper) WHERE p.embedding  IS NOT NULL RETURN count(p) AS n")[0]["n"]
+
     db.close()
 
     console.print("\n[bold]Graph status[/bold]\n")
-    console.print(f"  Papers:   [cyan]{papers}[/cyan]")
-    console.print(f"  Methods:  [cyan]{methods}[/cyan]")
-    console.print(f"  Datasets: [cyan]{datasets}[/cyan]")
-    console.print(f"  Edges:    [cyan]{edges}[/cyan]\n")
+    console.print(f"  Papers:       [cyan]{papers}[/cyan]  (enriched: {enriched}, embedded: {embedded})")
+    console.print(f"  Authors:      [cyan]{authors}[/cyan]")
+    console.print(f"  Topics:       [cyan]{topics}[/cyan]")
+    console.print(f"  Institutions: [cyan]{institutions}[/cyan]")
+    console.print(f"  CITES edges:  [cyan]{cites_edges}[/cyan]")
+    console.print(f"  BELONGS_TO:   [cyan]{belongs_to}[/cyan]\n")
 
 
 if __name__ == "__main__":

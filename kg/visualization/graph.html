@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!-- kg/visualization/graph.html -->
+<!-- Phase 4a: D3.js scatter plot — landscape view of the research space -->
+<!-- Data loaded from graph_data.json (exported by: kg visualize) -->
+<!-- Features: UMAP 2D scatter, zoom/pan, topic color, rank_score bubble size, date slider -->
+<!-- Click paper → highlight citation neighbours (orange) and semantic neighbours (blue) -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Research Landscape</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f12; color: #e0e0e0; font-family: system-ui, sans-serif; }
+  #header { padding: 12px 20px; border-bottom: 1px solid #222; display: flex; align-items: center; gap: 16px; }
+  #header h1 { font-size: 15px; font-weight: 600; color: #fff; }
+  #controls { display: flex; gap: 12px; align-items: center; }
+  #controls label { font-size: 12px; color: #888; }
+  #date-range { width: 160px; accent-color: #4f9eff; }
+  #search-box { background: #1c1c22; border: 1px solid #333; color: #e0e0e0;
+                padding: 4px 10px; border-radius: 4px; font-size: 12px; width: 200px; }
+  #main { display: flex; height: calc(100vh - 46px); }
+  #canvas { flex: 1; }
+  #sidebar { width: 300px; border-left: 1px solid #222; padding: 16px; overflow-y: auto;
+             background: #0f0f12; font-size: 12px; }
+  #sidebar h2 { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #aaa; }
+  #paper-info { display: none; }
+  #paper-info.active { display: block; }
+  #paper-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #fff; line-height: 1.4; }
+  .meta { color: #666; margin-bottom: 4px; }
+  .meta span { color: #aaa; }
+  #arxiv-link { display: inline-block; margin-top: 8px; color: #4f9eff; text-decoration: none; font-size: 11px; }
+  #legend { margin-top: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  circle.dot { cursor: pointer; transition: opacity 0.15s; }
+  circle.dot:hover { stroke: #fff; stroke-width: 1.5; }
+  circle.dimmed { opacity: 0.08; }
+  circle.highlighted-citation { fill: #ff8c42 !important; stroke: #ff8c42; stroke-width: 1.5; }
+  circle.highlighted-semantic  { fill: #4f9eff !important; stroke: #4f9eff; stroke-width: 1.5; }
+  circle.selected { stroke: #fff; stroke-width: 2; }
+  #tooltip { position: absolute; background: #1c1c22; border: 1px solid #333; border-radius: 6px;
+             padding: 8px 12px; font-size: 11px; pointer-events: none; max-width: 280px;
+             line-height: 1.5; display: none; }
+  #no-data { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+             text-align: center; color: #555; }
+  #no-data code { background: #1c1c22; padding: 2px 6px; border-radius: 3px; color: #888; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Research Landscape</h1>
+  <div id="controls">
+    <label>Date filter: <input type="range" id="date-range" min="0" max="100" value="0"></label>
+    <input id="search-box" placeholder="Search papers..." type="text">
+    <label style="font-size:11px;color:#555;" id="date-label"></label>
+  </div>
+</div>
+<div id="main">
+  <div id="canvas"></div>
+  <div id="sidebar">
+    <h2>Selected Paper</h2>
+    <div id="paper-info">
+      <div id="paper-title"></div>
+      <div class="meta">Date: <span id="paper-date"></span></div>
+      <div class="meta">Score: <span id="paper-score"></span></div>
+      <div class="meta">Topic: <span id="paper-topic"></span></div>
+      <div class="meta">arXiv: <span id="paper-arxiv"></span></div>
+      <a id="arxiv-link" target="_blank">Open on arXiv ↗</a>
+    </div>
+    <div id="legend"></div>
+  </div>
+</div>
+<div id="tooltip"></div>
+
+<script>
+// ── Load data ─────────────────────────────────────────────────────────────────
+const DATA_URL = "graph_data.json";
+
+async function loadData() {
+  try {
+    const resp = await fetch(DATA_URL);
+    if (!resp.ok) throw new Error("not found");
+    return await resp.json();
+  } catch (e) {
+    document.getElementById("canvas").innerHTML =
+      `<div id="no-data"><p>No data loaded.</p><p>Run: <code>kg visualize</code></p></div>`;
+    return null;
+  }
+}
+
+// ── Color scale per topic ─────────────────────────────────────────────────────
+const TOPIC_COLORS = d3.schemeTableau10.concat(d3.schemePastel1);
+
+function buildColorMap(papers) {
+  const topics = [...new Set(papers.map(p => p.topic || "Unknown"))];
+  const scale = {};
+  topics.forEach((t, i) => scale[t] = TOPIC_COLORS[i % TOPIC_COLORS.length]);
+  return scale;
+}
+
+// ── Main render ────────────────────────────────────────────────────────────────
+async function main() {
+  const data = await loadData();
+  if (!data) return;
+
+  const papers  = data.papers || [];
+  const edges   = data.edges   || [];   // {source, target, type: "cites"|"similar"}
+
+  if (papers.length === 0) {
+    document.getElementById("canvas").innerHTML =
+      `<div id="no-data"><p>No papers in dataset.</p><p>Run: <code>kg embed run && kg cluster --run && kg visualize</code></p></div>`;
+    return;
+  }
+
+  const colorMap = buildColorMap(papers);
+
+  // ── SVG setup ────────────────────────────────────────────────────────────────
+  const container = document.getElementById("canvas");
+  const W = container.clientWidth, H = container.clientHeight;
+
+  const svg = d3.select("#canvas").append("svg")
+    .attr("width", W).attr("height", H);
+
+  const g = svg.append("g");
+
+  // Zoom + pan
+  svg.call(d3.zoom().scaleExtent([0.2, 20]).on("zoom", e => g.attr("transform", e.transform)));
+
+  // ── Scales ────────────────────────────────────────────────────────────────────
+  const xs = d3.scaleLinear()
+    .domain(d3.extent(papers, p => p.x)).range([40, W - 40]);
+  const ys = d3.scaleLinear()
+    .domain(d3.extent(papers, p => p.y)).range([40, H - 40]);
+  const rs = d3.scaleSqrt()
+    .domain([0, d3.max(papers, p => p.rank_score || 0)])
+    .range([3, 12]);
+
+  // ── Draw dots ─────────────────────────────────────────────────────────────────
+  const circles = g.selectAll("circle.dot")
+    .data(papers)
+    .join("circle")
+      .attr("class", "dot")
+      .attr("cx",  p => xs(p.x))
+      .attr("cy",  p => ys(p.y))
+      .attr("r",   p => rs(p.rank_score || 0))
+      .attr("fill", p => colorMap[p.topic || "Unknown"])
+      .attr("opacity", 0.75);
+
+  // ── Tooltip ───────────────────────────────────────────────────────────────────
+  const tooltip = document.getElementById("tooltip");
+
+  circles.on("mousemove", (event, d) => {
+    tooltip.style.display = "block";
+    tooltip.style.left    = (event.pageX + 12) + "px";
+    tooltip.style.top     = (event.pageY + 12) + "px";
+    tooltip.innerHTML = `<strong>${d.title}</strong><br>${(d.date||"").slice(0,10)} &nbsp; score: ${(d.rank_score||0).toFixed(2)}`;
+  }).on("mouseleave", () => { tooltip.style.display = "none"; });
+
+  // ── Click to select ───────────────────────────────────────────────────────────
+  const edgeIndex = {};   // arxiv_id → {cites: Set, cited_by: Set, similar: Set}
+  edges.forEach(e => {
+    if (!edgeIndex[e.source]) edgeIndex[e.source] = {cites: new Set(), cited_by: new Set(), similar: new Set()};
+    if (!edgeIndex[e.target]) edgeIndex[e.target] = {cites: new Set(), cited_by: new Set(), similar: new Set()};
+    if (e.type === "cites") {
+      edgeIndex[e.source].cites.add(e.target);
+      edgeIndex[e.target].cited_by.add(e.source);
+    } else if (e.type === "similar") {
+      edgeIndex[e.source].similar.add(e.target);
+      edgeIndex[e.target].similar.add(e.source);
+    }
+  });
+
+  circles.on("click", (event, d) => {
+    const rel = edgeIndex[d.arxiv_id] || {};
+    const citationSet = new Set([...(rel.cites || []), ...(rel.cited_by || [])]);
+    const similarSet  = rel.similar || new Set();
+
+    circles
+      .classed("dimmed",               p => p.arxiv_id !== d.arxiv_id && !citationSet.has(p.arxiv_id) && !similarSet.has(p.arxiv_id))
+      .classed("selected",             p => p.arxiv_id === d.arxiv_id)
+      .classed("highlighted-citation", p => citationSet.has(p.arxiv_id))
+      .classed("highlighted-semantic",  p => similarSet.has(p.arxiv_id) && !citationSet.has(p.arxiv_id));
+
+    // Update sidebar
+    document.getElementById("paper-info").classList.add("active");
+    document.getElementById("paper-title").textContent = d.title;
+    document.getElementById("paper-date").textContent  = (d.date||"").slice(0,10);
+    document.getElementById("paper-score").textContent = (d.rank_score||0).toFixed(2);
+    document.getElementById("paper-topic").textContent = d.topic || "—";
+    document.getElementById("paper-arxiv").textContent = d.arxiv_id;
+    const link = document.getElementById("arxiv-link");
+    link.href = `https://arxiv.org/abs/${d.arxiv_id}`;
+  });
+
+  // ── Double-click to reset ─────────────────────────────────────────────────────
+  svg.on("dblclick.reset", () => {
+    circles.classed("dimmed selected highlighted-citation highlighted-semantic", false);
+  });
+
+  // ── Search ────────────────────────────────────────────────────────────────────
+  document.getElementById("search-box").addEventListener("input", e => {
+    const q = e.target.value.toLowerCase().trim();
+    if (!q) { circles.classed("dimmed", false); return; }
+    circles.classed("dimmed", p => !p.title.toLowerCase().includes(q) && p.arxiv_id !== q);
+  });
+
+  // ── Date slider ───────────────────────────────────────────────────────────────
+  const dates = papers.map(p => p.date || "").filter(Boolean).sort();
+  const slider = document.getElementById("date-range");
+  const label  = document.getElementById("date-label");
+
+  slider.addEventListener("input", () => {
+    const idx = Math.floor(slider.value / 100 * (dates.length - 1));
+    const since = dates[idx] || "";
+    label.textContent = since.slice(0,10);
+    circles.classed("dimmed", p => (p.date || "") < since);
+  });
+
+  // ── Legend ────────────────────────────────────────────────────────────────────
+  const legendEl = document.getElementById("legend");
+  legendEl.innerHTML = "<strong style='font-size:11px;color:#666;'>Topics</strong><br><br>";
+  Object.entries(colorMap).slice(0, 15).forEach(([topic, color]) => {
+    legendEl.innerHTML +=
+      `<div class="legend-item"><div class="legend-dot" style="background:${color}"></div>${topic}</div>`;
+  });
+}
+
+main();
+</script>
+</body>
+</html>
