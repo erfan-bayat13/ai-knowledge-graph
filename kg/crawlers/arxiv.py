@@ -10,16 +10,17 @@ from kg.crawlers.base import BaseCrawler
 logger = logging.getLogger(__name__)
 
 # arXiv RSS feeds to crawl
+# CHANGED: http → https to avoid 301 redirect (arXiv returns empty body on redirect in some clients)
 ARXIV_FEEDS = [
-    "http://export.arxiv.org/rss/cs.LG",   # Machine Learning
-    "http://export.arxiv.org/rss/cs.DC",   # Distributed, Parallel, and Cluster Computing
-    "http://export.arxiv.org/rss/cs.AI",   # Artificial Intelligence
-    # "http://export.arxiv.org/rss/cs.NE",   # Neural and Evolutionary Computing
-    # "http://export.arxiv.org/rss/cs.CV",   # Computer Vision and Pattern Recognition
-    "http://export.arxiv.org/rss/cs.CL",   # Computation and Language (NLP)
-    # "http://export.arxiv.org/rss/cs.CR",   # Cryptography and Security
-    # "http://export.arxiv.org/rss/cs.SE",   # Software Engineering
-    "http://export.arxiv.org/rss/stat.ML", # Machine Learning (Statistics)
+    "https://export.arxiv.org/rss/cs.LG",   # Machine Learning
+    "https://export.arxiv.org/rss/cs.AI",   # Artificial Intelligence
+    "https://export.arxiv.org/rss/cs.CL",   # Computation and Language (NLP)
+    "https://export.arxiv.org/rss/cs.NE",   # Neural and Evolutionary Computing
+    "https://export.arxiv.org/rss/cs.CV",   # Computer Vision and Pattern Recognition
+    "https://export.arxiv.org/rss/cs.DC",   # Distributed, Parallel, and Cluster Computing
+    "https://export.arxiv.org/rss/cs.SE",   # Software Engineering
+    "https://export.arxiv.org/rss/cs.CR",   # Cryptography and Security
+    "https://export.arxiv.org/rss/stat.ML", # Statistical Machine Learning
 ]
 
 # Keywords to filter infrastructure-relevant papers
@@ -66,15 +67,29 @@ class ArxivCrawler(BaseCrawler):
                     response.raise_for_status()
 
                     feed = feedparser.parse(response.text)
+
+                    # CHANGED: detect weekend/holiday skip — arXiv publishes <skipDays> in feed metadata
+                    # when no papers are available (Sat/Sun). Log clearly instead of silently returning 0.
+                    skip_days = [d.get("value", "") for d in getattr(feed.feed, "skip_days", [])]
+                    if not feed.entries and skip_days:
+                        logger.warning(
+                            f"Feed empty — arXiv skips {skip_days}. "
+                            f"No new papers on weekends. Run again on a weekday."
+                        )
+                        print(f"  ⚠️  {feed_url.split('/')[-1]}: empty (arXiv skips {skip_days})")
+                        continue
+
                     papers = feed.entries[:self.max_papers_per_feed]
                     all_papers.extend([
                         {"raw": entry, "feed_url": feed_url}
                         for entry in papers
                     ])
                     logger.info(f"Got {len(papers)} papers from {feed_url}")
+                    print(f"  ✅  {feed_url.split('/')[-1]}: {len(papers)} papers")
 
                 except Exception as e:
                     logger.error(f"Error fetching {feed_url}: {e}")
+                    print(f"  ❌  {feed_url}: {e}")
                     continue
 
         return all_papers
