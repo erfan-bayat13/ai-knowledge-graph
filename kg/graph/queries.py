@@ -19,7 +19,7 @@ PAPERS_BY_AUTHOR = """
 MATCH (p:Paper)-[:WRITTEN_BY]->(a:Author {name: $author_name})
 RETURN p.arxiv_id AS arxiv_id, p.title AS title,
        p.published_date AS published_date, p.rank_score AS rank_score
-ORDER BY p.rank_score DESC NULLS LAST
+ORDER BY p.rank_score DESC
 LIMIT $limit
 """
 
@@ -52,7 +52,7 @@ MATCH (citing:Paper)-[:CITES]->(p:Paper {arxiv_id: $arxiv_id})
 RETURN citing.arxiv_id AS arxiv_id, citing.title AS title,
        citing.published_date AS published_date,
        citing.rank_score AS rank_score
-ORDER BY citing.rank_score DESC NULLS LAST
+ORDER BY citing.rank_score DESC
 LIMIT $limit
 """
 
@@ -77,7 +77,7 @@ TRENDING_TOPICS = """
 MATCH (p:Paper)-[:BELONGS_TO]->(t:Topic)
 WHERE p.published_date >= $since_date
 RETURN t.name AS topic, count(p) AS paper_count, t.trend_score AS trend_score
-ORDER BY trend_score DESC NULLS LAST, paper_count DESC
+ORDER BY trend_score DESC, paper_count DESC
 LIMIT $limit
 """
 
@@ -85,7 +85,7 @@ PAPERS_IN_TOPIC = """
 MATCH (p:Paper)-[:BELONGS_TO]->(t:Topic {name: $topic_name})
 RETURN p.arxiv_id AS arxiv_id, p.title AS title,
        p.published_date AS published_date, p.rank_score AS rank_score
-ORDER BY p.rank_score DESC NULLS LAST
+ORDER BY p.rank_score DESC
 LIMIT $limit
 """
 

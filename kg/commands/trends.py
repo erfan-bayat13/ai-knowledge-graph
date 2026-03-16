@@ -32,7 +32,7 @@ def trends(
         WHERE p.published_date >= $since
         RETURN t.name AS name, count(p) AS new_papers, t.trend_score AS trend_score,
                t.paper_count AS total_papers
-        ORDER BY trend_score DESC NULLS LAST, new_papers DESC
+        ORDER BY trend_score DESC, new_papers DESC
         LIMIT $limit
     """, {"since": since, "limit": limit})
 

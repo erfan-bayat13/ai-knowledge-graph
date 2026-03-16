@@ -1,0 +1,2895 @@
+{
+  "papers": [
+    {
+      "arxiv_id": "2603.12287",
+      "title": "Context-Enriched Natural Language Descriptions of Vessel Trajectories",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.705066204071045,
+      "y": -0.37107837200164795,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12372",
+      "title": "Efficient Reasoning with Balanced Thinking",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.8011527061462402,
+      "y": 0.43602174520492554,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12483",
+      "title": "Generating Expressive and Customizable Evals for Timeseries Data Analysis Agents with AgentFuel",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.227201461791992,
+      "y": -0.5762068033218384,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12710",
+      "title": "AI Planning Framework for LLM-Based Web Agents",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.541366100311279,
+      "y": -1.1347479820251465,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12710",
+      "title": "AI Planning Framework for LLM-Based Web Agents",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.541366100311279,
+      "y": -1.1347479820251465,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12733",
+      "title": "On Using Machine Learning to Early Detect Catastrophic Failures in Marine Diesel Engines",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.985374927520752,
+      "y": 0.756999135017395,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12740",
+      "title": "ToolTree: Efficient LLM Agent Tool Planning via Dual-Feedback Monte Carlo Tree Search and Bidirectional Pruning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.113026142120361,
+      "y": -1.780807614326477,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12740",
+      "title": "ToolTree: Efficient LLM Agent Tool Planning via Dual-Feedback Monte Carlo Tree Search and Bidirectional Pruning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.113026142120361,
+      "y": -1.780807614326477,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12755",
+      "title": "AI Model Modulation with Logits Redistribution",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.768259525299072,
+      "y": 2.5389270782470703,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2603.12755",
+      "title": "AI Model Modulation with Logits Redistribution",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.768259525299072,
+      "y": 2.5389270782470703,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12813",
+      "title": "Context is all you need: Towards autonomous model-based process design using agentic AI in flowsheet simulations",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.2492730617523193,
+      "y": -1.314841628074646,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12926",
+      "title": "ODRL Policy Comparison Through Normalisation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.9476420879364014,
+      "y": -0.2988608181476593,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12933",
+      "title": "Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.3447771072387695,
+      "y": -1.5877447128295898,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12933",
+      "title": "Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.3447771072387695,
+      "y": -1.5877447128295898,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13017",
+      "title": "Structured Distillation for Personalized Agent Memory: 11x Token Reduction with Retrieval Preservation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.1749298572540283,
+      "y": 0.6090522408485413,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13099",
+      "title": "Beyond Final Answers: CRYSTAL Benchmark for Transparent Multimodal Reasoning Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.7640275955200195,
+      "y": -0.152858167886734,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.13099",
+      "title": "Beyond Final Answers: CRYSTAL Benchmark for Transparent Multimodal Reasoning Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.7640275955200195,
+      "y": -0.152858167886734,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13131",
+      "title": "Steve-Evolving: Open-World Embodied Self-Evolution via Fine-Grained Diagnosis and Dual-Track Knowledge Distillation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.40946626663208,
+      "y": -1.131378412246704,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.13131",
+      "title": "Steve-Evolving: Open-World Embodied Self-Evolution via Fine-Grained Diagnosis and Dual-Track Knowledge Distillation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.40946626663208,
+      "y": -1.131378412246704,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13134",
+      "title": "When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.18233585357666,
+      "y": 0.6874952912330627,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13168",
+      "title": "Developing and evaluating a chatbot to support maternal health care",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.615159749984741,
+      "y": 0.7869357466697693,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.13168",
+      "title": "Developing and evaluating a chatbot to support maternal health care",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.615159749984741,
+      "y": 0.7869357466697693,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13173",
+      "title": "Semantic Invariance in Agentic AI",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.4721405506134033,
+      "y": -0.5504792928695679,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12269",
+      "title": "DART: Input-Difficulty-AwaRe Adaptive Threshold for Early-Exit DNNs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.89916467666626,
+      "y": 2.269683361053467,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2603.12269",
+      "title": "DART: Input-Difficulty-AwaRe Adaptive Threshold for Early-Exit DNNs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.89916467666626,
+      "y": 2.269683361053467,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12270",
+      "title": "Task-Specific Knowledge Distillation via Intermediate Probes",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.6562793254852295,
+      "y": 1.2096513509750366,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12271",
+      "title": "Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.374612331390381,
+      "y": 1.1229084730148315,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12273",
+      "title": "Aligning Language Models from User Interactions",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.6920359134674072,
+      "y": 1.6154857873916626,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12273",
+      "title": "Aligning Language Models from User Interactions",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.6920359134674072,
+      "y": 1.6154857873916626,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12277",
+      "title": "Prompt Injection as Role Confusion",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.833386182785034,
+      "y": 0.20408619940280914,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12277",
+      "title": "Prompt Injection as Role Confusion",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.833386182785034,
+      "y": 0.20408619940280914,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12278",
+      "title": "Predictive Analytics for Foot Ulcers Using Time-Series Temperature and Pressure Data",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.811110973358154,
+      "y": 0.6282986402511597,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12286",
+      "title": "The DIME Architecture: A Unified Operational Algorithm for Neural Representation, Dynamics, Control and Integration",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.7163872718811035,
+      "y": 1.9075900316238403,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12288",
+      "title": "From Garbage to Gold: A Data-Architectural Theory of Predictive Robustness",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.8572916984558105,
+      "y": 1.5750631093978882,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12290",
+      "title": "Detecting Miscitation on the Scholarly Web through LLM-Augmented Text-Rich Graph Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.1675760746002197,
+      "y": 0.3967244625091553,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12290",
+      "title": "Detecting Miscitation on the Scholarly Web through LLM-Augmented Text-Rich Graph Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.1675760746002197,
+      "y": 0.3967244625091553,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12296",
+      "title": "Synthetic Data Generation for Brain-Computer Interfaces: Overview, Benchmarking, and Future Directions",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.957036018371582,
+      "y": 2.9984397888183594,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12298",
+      "title": "Global Evolutionary Steering: Refining Activation Steering Control via Cross-Layer Consistency",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.252917528152466,
+      "y": 2.1242618560791016,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2603.12298",
+      "title": "Global Evolutionary Steering: Refining Activation Steering Control via Cross-Layer Consistency",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.252917528152466,
+      "y": 2.1242618560791016,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12304",
+      "title": "A Geometrically-Grounded Drive for MDL-Based Optimization in Deep Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.895925521850586,
+      "y": 2.33809494972229,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12305",
+      "title": "HCP-DCNet: A Hierarchical Causal Primitive Dynamic Composition Network for Self-Improving Causal Understanding",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.211706638336182,
+      "y": -0.12127677351236343,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12310",
+      "title": "VQQA: An Agentic Approach for Video Evaluation and Quality Improvement",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.567286968231201,
+      "y": 1.995484709739685,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri > VQQA: An Agentic Approach for Video"
+    },
+    {
+      "arxiv_id": "2603.12310",
+      "title": "VQQA: An Agentic Approach for Video Evaluation and Quality Improvement",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.567286968231201,
+      "y": 1.995484709739685,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12324",
+      "title": "Thermodynamics of Reinforcement Learning Curricula",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.3024163246154785,
+      "y": 1.001869797706604,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12325",
+      "title": "Maximum Entropy Exploration Without the Rollouts",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.687959671020508,
+      "y": 0.526614785194397,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2603.12325",
+      "title": "Maximum Entropy Exploration Without the Rollouts",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.687959671020508,
+      "y": 0.526614785194397,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12340",
+      "title": "Optimizing Task Completion Time Updates Using POMDPs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.733658790588379,
+      "y": 0.12885472178459167,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning > Optimizing Task Completion Time Upd"
+    },
+    {
+      "arxiv_id": "2603.12340",
+      "title": "Optimizing Task Completion Time Updates Using POMDPs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.733658790588379,
+      "y": 0.12885472178459167,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12349",
+      "title": "Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.434077262878418,
+      "y": 0.06684540212154388,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.12349",
+      "title": "Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.434077262878418,
+      "y": 0.06684540212154388,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12382",
+      "title": "SPARROW: Learning Spatial Precision and Temporal Referential Consistency in Pixel-Grounded Video MLLMs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.963120460510254,
+      "y": 3.0859267711639404,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12382",
+      "title": "SPARROW: Learning Spatial Precision and Temporal Referential Consistency in Pixel-Grounded Video MLLMs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.963120460510254,
+      "y": 3.0859267711639404,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12396",
+      "title": "Test-Time Strategies for More Efficient and Accurate Agentic RAG",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.838932752609253,
+      "y": -0.8960633277893066,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12433",
+      "title": "Revisiting Model Stitching In the Foundation Model Era",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.140757083892822,
+      "y": 2.691401481628418,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2603.12433",
+      "title": "Revisiting Model Stitching In the Foundation Model Era",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.140757083892822,
+      "y": 2.691401481628418,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12445",
+      "title": "Unmasking Biases and Reliability Concerns in Convolutional Neural Networks Analysis of Cancer Pathology Images",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.47539758682251,
+      "y": 2.909566879272461,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12455",
+      "title": "Operationalising Cyber Risk Management Using AI: Connecting Cyber Incidents to MITRE ATT&CK Techniques, Security Controls, and Metrics",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.283176898956299,
+      "y": -0.5432562232017517,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web  > Operationalising Cyber Risk Managem"
+    },
+    {
+      "arxiv_id": "2603.12455",
+      "title": "Operationalising Cyber Risk Management Using AI: Connecting Cyber Incidents to MITRE ATT&CK Techniques, Security Controls, and Metrics",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.283176898956299,
+      "y": -0.5432562232017517,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12458",
+      "title": "Shattering the Shortcut: A Topology-Regularized Benchmark for Multi-hop Medical Reasoning in LLMs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.279447078704834,
+      "y": 0.6811966896057129,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12470",
+      "title": "CLARE: Classification-based Regression for Electron Temperature Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.233064651489258,
+      "y": 1.1831746101379395,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12475",
+      "title": "The Perfection Paradox: From Architect to Curator in AI-Assisted API Design",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.7355422973632812,
+      "y": -1.3541576862335205,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.12475",
+      "title": "The Perfection Paradox: From Architect to Curator in AI-Assisted API Design",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.7355422973632812,
+      "y": -1.3541576862335205,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12480",
+      "title": "One-Step Flow Policy: Self-Distillation for Fast Visuomotor Policies",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 7.013518333435059,
+      "y": 1.3977937698364258,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12500",
+      "title": "TRACE: Temporal Rule-Anchored Chain-of-Evidence on Knowledge Graphs for Interpretable Stock Movement Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.139752388000488,
+      "y": -0.05569310486316681,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.12500",
+      "title": "TRACE: Temporal Rule-Anchored Chain-of-Evidence on Knowledge Graphs for Interpretable Stock Movement Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.139752388000488,
+      "y": -0.05569310486316681,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12506",
+      "title": "Na\\\"ive PAINE: Lightweight Text-to-Image Generation Improvement with Prompt Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.454182147979736,
+      "y": 2.348069190979004,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri > VQQA: An Agentic Approach for Video"
+    },
+    {
+      "arxiv_id": "2603.12506",
+      "title": "Na\\\"ive PAINE: Lightweight Text-to-Image Generation Improvement with Prompt Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.454182147979736,
+      "y": 2.348069190979004,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12508",
+      "title": "ELLA: Generative AI-Powered Social Robots for Early Language Development at Home",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.354608535766602,
+      "y": -1.4845582246780396,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12508",
+      "title": "ELLA: Generative AI-Powered Social Robots for Early Language Development at Home",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.354608535766602,
+      "y": -1.4845582246780396,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12510",
+      "title": "Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation for Robust Robot Policies",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.698463439941406,
+      "y": 1.2065815925598145,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12520",
+      "title": "When LLM Judge Scores Look Good but Best-of-N Decisions Fail",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.4012911319732666,
+      "y": 1.0654948949813843,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12520",
+      "title": "When LLM Judge Scores Look Good but Best-of-N Decisions Fail",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.4012911319732666,
+      "y": 1.0654948949813843,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12522",
+      "title": "LLM BiasScope: A Real-Time Bias Analysis Platform for Comparative LLM Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.4166831970214844,
+      "y": 1.3937045335769653,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12522",
+      "title": "LLM BiasScope: A Real-Time Bias Analysis Platform for Comparative LLM Evaluation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.4166831970214844,
+      "y": 1.3937045335769653,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12529",
+      "title": "TERMINATOR: Learning Optimal Exit Points for Early Stopping in Chain-of-Thought Reasoning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.900552988052368,
+      "y": 0.2273707389831543,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.12529",
+      "title": "TERMINATOR: Learning Optimal Exit Points for Early Stopping in Chain-of-Thought Reasoning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.900552988052368,
+      "y": 0.2273707389831543,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12538",
+      "title": "Spatio-Semantic Expert Routing Architecture with Mixture-of-Experts for Referring Image Segmentation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.503746509552002,
+      "y": 3.228372573852539,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12538",
+      "title": "Spatio-Semantic Expert Routing Architecture with Mixture-of-Experts for Referring Image Segmentation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.503746509552002,
+      "y": 3.228372573852539,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12540",
+      "title": "Embedded Quantum Machine Learning in Embedded Systems: Feasibility, Hybrid Architectures, and Quantum Co-Processors",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.310061454772949,
+      "y": 1.6946414709091187,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12543",
+      "title": "CALF: Communication-Aware Learning Framework for Distributed Reinforcement Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.48600959777832,
+      "y": 0.4393564760684967,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12554",
+      "title": "Reinforcement Learning for Diffusion LLMs with Entropy-Guided Step Selection and Stepwise Advantages",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 7.06502628326416,
+      "y": 0.20756369829177856,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2603.12554",
+      "title": "Reinforcement Learning for Diffusion LLMs with Entropy-Guided Step Selection and Stepwise Advantages",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 7.06502628326416,
+      "y": 0.20756369829177856,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12564",
+      "title": "AgentDrift: Unsafe Recommendation Drift Under Tool Corruption Hidden by Ranking Metrics in LLM Agents",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.5834763050079346,
+      "y": 0.2540687322616577,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12581",
+      "title": "Multiscale Structure-Guided Latent Diffusion for Multimodal MRI Translation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.698889255523682,
+      "y": 2.5817928314208984,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12591",
+      "title": "CA-HFP: Curvature-Aware Heterogeneous Federated Pruning with Model Reconstruction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.755638599395752,
+      "y": 2.2689292430877686,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2603.12591",
+      "title": "CA-HFP: Curvature-Aware Heterogeneous Federated Pruning with Model Reconstruction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.755638599395752,
+      "y": 2.2689292430877686,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12592",
+      "title": "Early Pruning for Public Transport Routing",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.005982875823975,
+      "y": -0.0509786456823349,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12595",
+      "title": "Swap-guided Preference Learning for Personalized Reinforcement Learning from Human Feedback",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.320161819458008,
+      "y": 1.580782413482666,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12596",
+      "title": "Optimize Wider, Not Deeper: Consensus Aggregation for Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.5522966384887695,
+      "y": 0.5985287427902222,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12597",
+      "title": "Feynman: Knowledge-Infused Diagramming Agent for Scalable Visual Designs",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.908611297607422,
+      "y": -0.8312904238700867,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12606",
+      "title": "Mastering Negation: Boosting Grounding Models via Grouped Opposition-Based Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.626426696777344,
+      "y": 3.1063098907470703,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12607",
+      "title": "CarPLAN: Context-Adaptive and Robust Planning with Dynamic Scene Awareness for Autonomous Driving",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.70176887512207,
+      "y": 1.3252586126327515,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12612",
+      "title": "FastDSAC: Unlocking the Potential of Maximum Entropy RL in High-Dimensional Humanoid Control",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.921237945556641,
+      "y": 0.8076087832450867,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2603.12612",
+      "title": "FastDSAC: Unlocking the Potential of Maximum Entropy RL in High-Dimensional Humanoid Control",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.921237945556641,
+      "y": 0.8076087832450867,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12615",
+      "title": "Literary Narrative as Moral Probe : A Cross-System Framework for Evaluating AI Ethical Reasoning and Refusal Behavior",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.7010366916656494,
+      "y": -0.6987957954406738,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.12615",
+      "title": "Literary Narrative as Moral Probe : A Cross-System Framework for Evaluating AI Ethical Reasoning and Refusal Behavior",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.7010366916656494,
+      "y": -0.6987957954406738,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12617",
+      "title": "When Drafts Evolve: Speculative Decoding Meets Online Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.6289966106414795,
+      "y": 1.8670296669006348,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12617",
+      "title": "When Drafts Evolve: Speculative Decoding Meets Online Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.6289966106414795,
+      "y": 1.8670296669006348,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12625",
+      "title": "VLM4Rec: Multimodal Semantic Representation for Recommendation with Large Vision-Language Models",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.671098232269287,
+      "y": 2.972444534301758,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12625",
+      "title": "VLM4Rec: Multimodal Semantic Representation for Recommendation with Large Vision-Language Models",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.671098232269287,
+      "y": 2.972444534301758,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12628",
+      "title": "Towards unified brain-to-text decoding across speech production and perception",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.8982322216033936,
+      "y": 2.778163194656372,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12630",
+      "title": "The Economics of AI Supply Chain Regulation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.085860252380371,
+      "y": -0.9743118286132812,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.12630",
+      "title": "The Economics of AI Supply Chain Regulation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.085860252380371,
+      "y": -0.9743118286132812,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12634",
+      "title": "Spend Less, Reason Better: Budget-Aware Value Tree Search for LLM Agents",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.9345755577087402,
+      "y": -1.7464648485183716,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12634",
+      "title": "Spend Less, Reason Better: Budget-Aware Value Tree Search for LLM Agents",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.9345755577087402,
+      "y": -1.7464648485183716,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12645",
+      "title": "LightMoE: Reducing Mixture-of-Experts Redundancy through Expert Replacing",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8201324939727783,
+      "y": 2.0800588130950928,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12645",
+      "title": "LightMoE: Reducing Mixture-of-Experts Redundancy through Expert Replacing",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8201324939727783,
+      "y": 2.0800588130950928,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12647",
+      "title": "LR-SGS: Robust LiDAR-Reflectance-Guided Salient Gaussian Splatting for Self-Driving Scene Reconstruction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.800487041473389,
+      "y": 3.0636377334594727,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12647",
+      "title": "LR-SGS: Robust LiDAR-Reflectance-Guided Salient Gaussian Splatting for Self-Driving Scene Reconstruction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.800487041473389,
+      "y": 3.0636377334594727,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12658",
+      "title": "Continual Learning in Large Language Models: Methods, Challenges, and Opportunities",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.0358378887176514,
+      "y": 1.982919692993164,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12658",
+      "title": "Continual Learning in Large Language Models: Methods, Challenges, and Opportunities",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.0358378887176514,
+      "y": 1.982919692993164,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12664",
+      "title": "From Text to Forecasts: Bridging Modality Gap with Temporal Evolution Semantic Space",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.931336879730225,
+      "y": 0.8386098146438599,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12666",
+      "title": "RetroReasoner: A Reasoning LLM for Strategic Retrosynthesis Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.586122512817383,
+      "y": 0.24018652737140656,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.12666",
+      "title": "RetroReasoner: A Reasoning LLM for Strategic Retrosynthesis Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.586122512817383,
+      "y": 0.24018652737140656,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12667",
+      "title": "Marker-Based 3D Reconstruction of Aggregates with a Comparative Analysis of 2D and 3D Morphologies",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.758028030395508,
+      "y": 3.3677916526794434,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12677",
+      "title": "MetaKE: Meta-learning Aligned Knowledge Editing via Bi-level Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8400604724884033,
+      "y": 1.9227070808410645,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12677",
+      "title": "MetaKE: Meta-learning Aligned Knowledge Editing via Bi-level Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8400604724884033,
+      "y": 1.9227070808410645,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12683",
+      "title": "Experimental evidence of progressive ChatGPT models self-convergence",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.5833423137664795,
+      "y": 1.3935308456420898,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12683",
+      "title": "Experimental evidence of progressive ChatGPT models self-convergence",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.5833423137664795,
+      "y": 1.3935308456420898,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12684",
+      "title": "Federated Hierarchical Clustering with Automatic Selection of Optimal Cluster Numbers",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.507521629333496,
+      "y": 1.4505099058151245,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12693",
+      "title": "HSEmotion Team at ABAW-10 Competition: Facial Expression Recognition, Valence-Arousal Estimation, Action Unit Detection and Fine-Grained Violence Classification",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.563305377960205,
+      "y": 3.4987051486968994,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12701",
+      "title": "Seeing Eye to Eye: Enabling Cognitive Alignment Through Shared First-Person Perspective in Human-AI Collaboration",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.903629302978516,
+      "y": -0.9205325245857239,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12707",
+      "title": "Cost-Efficient Multimodal LLM Inference via Cross-Tier GPU Heterogeneity",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.450287818908691,
+      "y": 2.1262969970703125,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12717",
+      "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.644859790802002,
+      "y": -0.6778698563575745,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12719",
+      "title": "IGASA: Integrated Geometry-Aware and Skip-Attention Modules for Enhanced Point Cloud Registration",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.733369827270508,
+      "y": 3.317413091659546,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12721",
+      "title": "CMHANet: A Cross-Modal Hybrid Attention Network for Point Cloud Registration",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.580677032470703,
+      "y": 3.43742036819458,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12721",
+      "title": "CMHANet: A Cross-Modal Hybrid Attention Network for Point Cloud Registration",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.580677032470703,
+      "y": 3.43742036819458,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12722",
+      "title": "CognitionCapturerPro: Towards High-Fidelity Visual Decoding from EEG/MEG via Multi-modal Information and Asymmetric Alignment",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.424886226654053,
+      "y": 2.9063804149627686,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12722",
+      "title": "CognitionCapturerPro: Towards High-Fidelity Visual Decoding from EEG/MEG via Multi-modal Information and Asymmetric Alignment",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.424886226654053,
+      "y": 2.9063804149627686,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12725",
+      "title": "Graph In-Context Operator Networks for Generalizable Spatiotemporal Prediction",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.118316173553467,
+      "y": 0.4193388521671295,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12739",
+      "title": "SRAM-Based Compute-in-Memory Accelerator for Linear-decay Spiking Neural Networks",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.931276321411133,
+      "y": 2.0122296810150146,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12743",
+      "title": "MoKus: Leveraging Cross-Modal Knowledge Transfer for Knowledge-Aware Concept Customization",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 5.8015642166137695,
+      "y": 3.3494811058044434,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12744",
+      "title": "TaoBench: Do Automated Theorem Prover LLMs Generalize Beyond MathLib?",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.7048332691192627,
+      "y": -1.6256921291351318,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12744",
+      "title": "TaoBench: Do Automated Theorem Prover LLMs Generalize Beyond MathLib?",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.7048332691192627,
+      "y": -1.6256921291351318,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12758",
+      "title": "FC-Track: Overlap-Aware Post-Association Correction for Online Multi-Object Tracking",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.475863933563232,
+      "y": 3.512646436691284,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12773",
+      "title": "Empowering Semantic-Sensitive Underwater Image Enhancement with VLM",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.033308982849121,
+      "y": 3.028437376022339,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12773",
+      "title": "Empowering Semantic-Sensitive Underwater Image Enhancement with VLM",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.033308982849121,
+      "y": 3.028437376022339,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12781",
+      "title": "The RIGID Framework: Research-Integrated, Generative AI-Mediated Instructional Design",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8946456909179688,
+      "y": -1.2499269247055054,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.12781",
+      "title": "The RIGID Framework: Research-Integrated, Generative AI-Mediated Instructional Design",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 2.8946456909179688,
+      "y": -1.2499269247055054,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12793",
+      "title": "Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.17597770690918,
+      "y": 2.531991481781006,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12816",
+      "title": "Residual SODAP: Residual Self-Organizing Domain-Adaptive Prompting with Structural Knowledge Preservation for Continual Learning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.2490129470825195,
+      "y": 2.393380880355835,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12832",
+      "title": "Hierarchical Dual-Change Collaborative Learning for UAV Scene Change Captioning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.182058334350586,
+      "y": 3.299696683883667,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri > SPARROW: Learning Spatial Precision"
+    },
+    {
+      "arxiv_id": "2603.12832",
+      "title": "Hierarchical Dual-Change Collaborative Learning for UAV Scene Change Captioning",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 6.182058334350586,
+      "y": 3.299696683883667,
+      "cluster_id": 6,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12837",
+      "title": "Mask2Flow-TSE: Two-Stage Target Speaker Extraction with Masking and Flow Matching",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.67162823677063,
+      "y": 3.0845298767089844,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12840",
+      "title": "DAST: A Dual-Stream Voice Anonymization Attacker with Staged Training",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 3.5635740756988525,
+      "y": 2.979412317276001,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12847",
+      "title": "Hierarchical Reference Sets for Robust Unsupervised Detection of Scattered and Clustered Outliers",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.862977027893066,
+      "y": 0.769618570804596,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12848",
+      "title": "Team LEYA in 10th ABAW Competition: Multimodal Ambivalence/Hesitancy Recognition Approach",
+      "date": "2026-03-16",
+      "rank_score": 0.8,
+      "x": 4.43513298034668,
+      "y": 3.5943732261657715,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12893",
+      "title": "Finite Difference Flow Optimization for RL Post-Training of Text-to-Image Models",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.595340251922607,
+      "y": 2.099095106124878,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri > VQQA: An Agentic Approach for Video"
+    },
+    {
+      "arxiv_id": "2603.12893",
+      "title": "Finite Difference Flow Optimization for RL Post-Training of Text-to-Image Models",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.595340251922607,
+      "y": 2.099095106124878,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.12895",
+      "title": "Human-Centered Evaluation of an LLM-Based Process Modeling Copilot: A Mixed-Methods Study with Domain Experts",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.025546073913574,
+      "y": -1.3238863945007324,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12906",
+      "title": "Learning from Child-Directed Speech in Two-Language Scenarios: A French-English Case Study",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.9589684009552,
+      "y": 1.8007677793502808,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12906",
+      "title": "Learning from Child-Directed Speech in Two-Language Scenarios: A French-English Case Study",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.9589684009552,
+      "y": 1.8007677793502808,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12912",
+      "title": "FedBPrompt: Federated Domain Generalization Person Re-Identification via Body Distribution Aware Visual Prompts",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.383360385894775,
+      "y": 3.367173433303833,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12915",
+      "title": "Stake the Points: Structure-Faithful Instance Unlearning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.112485408782959,
+      "y": 2.2292699813842773,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12916",
+      "title": "Surprised by Attention: Predictable Query Dynamics for Time Series Anomaly Detection",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.173069000244141,
+      "y": 0.6397979259490967,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.12938",
+      "title": "Thinking in Streaming Video",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.072484970092773,
+      "y": -1.0481287240982056,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.12953",
+      "title": "Delta1 with LLM: symbolic and neural integration for credible and explainable reasoning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6329197883605957,
+      "y": -0.19665800034999847,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.12953",
+      "title": "Delta1 with LLM: symbolic and neural integration for credible and explainable reasoning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6329197883605957,
+      "y": -0.19665800034999847,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12960",
+      "title": "Efficient Real-World Autonomous Racing via Attenuated Residual Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.970472812652588,
+      "y": 0.8807222247123718,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2603.12960",
+      "title": "Efficient Real-World Autonomous Racing via Attenuated Residual Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.970472812652588,
+      "y": 0.8807222247123718,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.12983",
+      "title": "Is Human Annotation Necessary? Iterative MBR Distillation for Error Span Detection in Machine Translation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.485630750656128,
+      "y": 1.8360704183578491,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.12983",
+      "title": "Is Human Annotation Necessary? Iterative MBR Distillation for Error Span Detection in Machine Translation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.485630750656128,
+      "y": 1.8360704183578491,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12988",
+      "title": "Fair Lung Disease Diagnosis from Chest CT via Gender-Adversarial Attention Multiple Instance Learning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.383745193481445,
+      "y": 2.8769936561584473,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13019",
+      "title": "ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.607533931732178,
+      "y": 0.34636059403419495,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning > Optimizing Task Completion Time Upd"
+    },
+    {
+      "arxiv_id": "2603.13019",
+      "title": "ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.607533931732178,
+      "y": 0.34636059403419495,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2603.13023",
+      "title": "daVinci-Env: Open SWE Environment Synthesis at Scale",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.820101022720337,
+      "y": -1.5798875093460083,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.13023",
+      "title": "daVinci-Env: Open SWE Environment Synthesis at Scale",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.820101022720337,
+      "y": -1.5798875093460083,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13024",
+      "title": "SAW: Toward a Surgical Action World Model via Controllable and Scalable Video Generation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.056825637817383,
+      "y": 2.016138792037964,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri > SAW: Toward a Surgical Action World"
+    },
+    {
+      "arxiv_id": "2603.13024",
+      "title": "SAW: Toward a Surgical Action World Model via Controllable and Scalable Video Generation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.056825637817383,
+      "y": 2.016138792037964,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.13027",
+      "title": "SortScrews: A Dataset and Baseline for Real-time Screw Classification",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.673874378204346,
+      "y": 3.4099433422088623,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13028",
+      "title": "Purify Once, Edit Freely: Breaking Image Protections under Model Mismatch",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.26420783996582,
+      "y": 2.571053981781006,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri > VQQA: An Agentic Approach for Video"
+    },
+    {
+      "arxiv_id": "2603.13028",
+      "title": "Purify Once, Edit Freely: Breaking Image Protections under Model Mismatch",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.26420783996582,
+      "y": 2.571053981781006,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.13036",
+      "title": "Interrogating Design Homogenization in Web Vibe Coding",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.5108492374420166,
+      "y": -1.3015408515930176,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.13036",
+      "title": "Interrogating Design Homogenization in Web Vibe Coding",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.5108492374420166,
+      "y": -1.3015408515930176,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13044",
+      "title": "Are General-Purpose Vision Models All We Need for 2D Medical Image Segmentation? A Cross-Dataset Empirical Study",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.595834255218506,
+      "y": 2.9888956546783447,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13056",
+      "title": "Team RAS in 10th ABAW Competition: Multimodal Valence and Arousal Estimation Approach",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.535744667053223,
+      "y": 3.579261541366577,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13059",
+      "title": "Competition-Aware CPC Forecasting with Near-Market Coverage",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.194284915924072,
+      "y": 0.79263836145401,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.13065",
+      "title": "L2GTX: From Local to Global Time Series Explanations",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.807173728942871,
+      "y": 0.4826779067516327,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.13068",
+      "title": "GeoChemAD: Benchmarking Unsupervised Geochemical Anomaly Detection for Mineral Exploration",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.490396499633789,
+      "y": 1.4227536916732788,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13083",
+      "title": "Human-in-the-Loop LLM Grading for Handwritten Mathematics Assessments",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.6589884757995605,
+      "y": 0.4472596049308777,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13100",
+      "title": "Evaluating VLMs' Spatial Reasoning Over Robot Motion: A Step Towards Robot Planning with Motion Preferences",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.283218860626221,
+      "y": -0.6285605430603027,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13109",
+      "title": "BoSS: A Best-of-Strategies Selector as an Oracle for Deep Active Learning",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.1329874992370605,
+      "y": 2.181863307952881,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13119",
+      "title": "Geometry-Guided Camera Motion Understanding in VideoLLMs",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.568557262420654,
+      "y": 2.6130473613739014,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.13126",
+      "title": "Developing the PsyCogMetrics AI Lab to Evaluate Large Language Models and Advance Cognitive Science -- A Three-Cycle Action Design Science Study",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.005805015563965,
+      "y": -1.0429173707962036,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.13126",
+      "title": "Developing the PsyCogMetrics AI Lab to Evaluate Large Language Models and Advance Cognitive Science -- A Three-Cycle Action Design Science Study",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.005805015563965,
+      "y": -1.0429173707962036,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13154",
+      "title": "ESG-Bench: Benchmarking Long-Context ESG Reports for Hallucination Mitigation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.8610925674438477,
+      "y": 0.14093250036239624,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2603.13154",
+      "title": "ESG-Bench: Benchmarking Long-Context ESG Reports for Hallucination Mitigation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.8610925674438477,
+      "y": 0.14093250036239624,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13177",
+      "title": "Clustering Astronomical Orbital Synthetic Data Using Advanced Feature Extraction and Dimensionality Reduction Techniques",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.091756343841553,
+      "y": 1.1189000606536865,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2603.13180",
+      "title": "MXNorm: Reusing MXFP block scales for efficient tensor normalisation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.14442253112793,
+      "y": 2.103809356689453,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13186",
+      "title": "Learnability and Privacy Vulnerability are Entangled in a Few Critical Weights",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.190662384033203,
+      "y": 1.9505324363708496,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2603.13189",
+      "title": "LLM Constitutional Multi-Agent Governance",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.426131010055542,
+      "y": -0.3071175515651703,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13191",
+      "title": "From Experiments to Expertise: Scientific Knowledge Consolidation for AI-Driven Computational Research",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6098837852478027,
+      "y": -0.5788126587867737,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2603.13191",
+      "title": "From Experiments to Expertise: Scientific Knowledge Consolidation for AI-Driven Computational Research",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6098837852478027,
+      "y": -0.5788126587867737,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.13224",
+      "title": "Visual-ERM: Reward Modeling for Visual Equivalence",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.50704288482666,
+      "y": 2.0648720264434814,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri > VQQA: An Agentic Approach for Video"
+    },
+    {
+      "arxiv_id": "2603.13224",
+      "title": "Visual-ERM: Reward Modeling for Visual Equivalence",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.50704288482666,
+      "y": 2.0648720264434814,
+      "cluster_id": 3,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2603.13228",
+      "title": "PhysMoDPO: Physically-Plausible Humanoid Motion with Preference Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.09445858001709,
+      "y": 1.586326003074646,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2410.20894",
+      "title": "Active Causal Structure Learning with Latent Variables: Towards Learning to Detour in Autonomous Robots",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.482484817504883,
+      "y": -0.06847533583641052,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2505.01651",
+      "title": "Human-AI Governance (HAIG): A Trust-Utility Approach",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.5870871543884277,
+      "y": -0.9696366190910339,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2505.01651",
+      "title": "Human-AI Governance (HAIG): A Trust-Utility Approach",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.5870871543884277,
+      "y": -0.9696366190910339,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2505.17815",
+      "title": "Evaluation Faking: Unveiling Observer Effects in Safety Evaluation of Frontier AI Systems",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.1763689517974854,
+      "y": -0.9107605218887329,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web  > Operationalising Cyber Risk Managem"
+    },
+    {
+      "arxiv_id": "2505.17815",
+      "title": "Evaluation Faking: Unveiling Observer Effects in Safety Evaluation of Frontier AI Systems",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.1763689517974854,
+      "y": -0.9107605218887329,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2505.22954",
+      "title": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.058309555053711,
+      "y": -1.394245982170105,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2505.22954",
+      "title": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.058309555053711,
+      "y": -1.394245982170105,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2507.18059",
+      "title": "Multi-Agent Guided Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.818653106689453,
+      "y": 0.40181684494018555,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning > Optimizing Task Completion Time Upd"
+    },
+    {
+      "arxiv_id": "2507.18059",
+      "title": "Multi-Agent Guided Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.818653106689453,
+      "y": 0.40181684494018555,
+      "cluster_id": 2,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2508.11360",
+      "title": "CRAFT-GUI: Curriculum-Reinforced Agent For GUI Tasks",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.737991809844971,
+      "y": 0.6425029635429382,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2508.21742",
+      "title": "Orientability of Causal Relations in Time Series using Summary Causal Graphs and Faithful Distributions",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.5968852043151855,
+      "y": 0.17047470808029175,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2509.09677",
+      "title": "The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.852527379989624,
+      "y": 0.2482365369796753,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2509.21553",
+      "title": "AutoClimDS: Climate Data Science Agentic AI -- A Knowledge Graph is All You Need",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.010372638702393,
+      "y": -0.8419824242591858,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2509.21553",
+      "title": "AutoClimDS: Climate Data Science Agentic AI -- A Knowledge Graph is All You Need",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.010372638702393,
+      "y": -0.8419824242591858,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2509.26495",
+      "title": "OffTopicEval: When Large Language Models Enter the Wrong Chat, Almost Always!",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.498276948928833,
+      "y": 0.4731278717517853,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2510.20591",
+      "title": "Transferable Graph Learning for Transmission Congestion Management via Busbar Splitting",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.094778537750244,
+      "y": 0.19566485285758972,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2601.04864",
+      "title": "Key-Value Pair-Free Continual Learner via Task-Specific Prompt-Prototype",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.243966102600098,
+      "y": 2.3521337509155273,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2602.02983",
+      "title": "Do LLMs Share Human-Like Biases? Causal Reasoning Under Prior Knowledge, Irrelevant Context, and Varying Compute Budgets",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6687803268432617,
+      "y": 0.05089297518134117,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web  > Beyond Final Answers: CRYSTAL Bench"
+    },
+    {
+      "arxiv_id": "2602.02983",
+      "title": "Do LLMs Share Human-Like Biases? Causal Reasoning Under Prior Knowledge, Irrelevant Context, and Varying Compute Budgets",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6687803268432617,
+      "y": 0.05089297518134117,
+      "cluster_id": 7,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2602.12078",
+      "title": "Tiny Recursive Reasoning with Mamba-2 Attention Hybrid",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.8278422355651855,
+      "y": 0.5874097943305969,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2602.12670",
+      "title": "SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6305041313171387,
+      "y": -1.5549103021621704,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2602.12670",
+      "title": "SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.6305041313171387,
+      "y": -1.5549103021621704,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2602.16891",
+      "title": "OpenSage: Self-programming Agent Generation Engine",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.948002338409424,
+      "y": -1.4676132202148438,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2602.16891",
+      "title": "OpenSage: Self-programming Agent Generation Engine",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.948002338409424,
+      "y": -1.4676132202148438,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2602.23163",
+      "title": "A Decision-Theoretic Formalisation of Steganography With Applications to LLM Monitoring",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.6277425289154053,
+      "y": -0.14369434118270874,
+      "cluster_id": 3,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.05344",
+      "title": "Building Effective AI Coding Agents for the Terminal: Scaffolding, Harness, Context Engineering, and Lessons Learned",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.828763484954834,
+      "y": -1.882827877998352,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.05344",
+      "title": "Building Effective AI Coding Agents for the Terminal: Scaffolding, Harness, Context Engineering, and Lessons Learned",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.828763484954834,
+      "y": -1.882827877998352,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.09619",
+      "title": "Context Engineering: From Prompts to Corporate Multi-Agent Architecture",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.6585772037506104,
+      "y": -0.9537058472633362,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.09619",
+      "title": "Context Engineering: From Prompts to Corporate Multi-Agent Architecture",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.6585772037506104,
+      "y": -0.9537058472633362,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.11214",
+      "title": "Measuring AI Agents' Progress on Multi-Step Cyber Attack Scenarios",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.491035223007202,
+      "y": -1.048531413078308,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web  > Operationalising Cyber Risk Managem"
+    },
+    {
+      "arxiv_id": "2603.11214",
+      "title": "Measuring AI Agents' Progress on Multi-Step Cyber Attack Scenarios",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.491035223007202,
+      "y": -1.048531413078308,
+      "cluster_id": 10,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.11277",
+      "title": "COMPASS: The explainable agentic framework for Sovereignty, Sustainability, Compliance, and Ethics",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.689718008041382,
+      "y": -0.8762925863265991,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.11277",
+      "title": "COMPASS: The explainable agentic framework for Sovereignty, Sustainability, Compliance, and Ethics",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.689718008041382,
+      "y": -0.8762925863265991,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.11455",
+      "title": "Examining Users' Behavioural Intention to Use OpenClaw Through the Cognition--Affect--Conation Framework",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.405233144760132,
+      "y": -0.7686341404914856,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2603.11455",
+      "title": "Examining Users' Behavioural Intention to Use OpenClaw Through the Cognition--Affect--Conation Framework",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.405233144760132,
+      "y": -0.7686341404914856,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2603.12056",
+      "title": "XSkill: Continual Learning from Experience and Skills in Multimodal Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.7126784324646,
+      "y": -1.0538172721862793,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2603.12056",
+      "title": "XSkill: Continual Learning from Experience and Skills in Multimodal Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.7126784324646,
+      "y": -1.0538172721862793,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2402.03627",
+      "title": "Partially Recentralization Softmax Loss for Vision-Language Models Robustness",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.57743239402771,
+      "y": 2.705315589904785,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2405.05723",
+      "title": "Computational lexical analysis of Flamenco genres",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.249669313430786,
+      "y": -1.0071983337402344,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2406.14815",
+      "title": "Latent diffusion models for parameterization and data assimilation of facies-based geomodels",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.986739158630371,
+      "y": 1.7867817878723145,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2410.10862",
+      "title": "Superficial Safety Alignment Hypothesis",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.5175437927246094,
+      "y": 0.9366832971572876,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2411.10406",
+      "title": "How to Build a Quantum Supercomputer: Scaling from Hundreds to Millions of Qubits",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.337069034576416,
+      "y": 1.729204535484314,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2412.00547",
+      "title": "Motion Dreamer: Boundary Conditional Motion Reasoning for Physically Coherent Video Generation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.882226943969727,
+      "y": 2.3441860675811768,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri > SAW: Toward a Surgical Action World"
+    },
+    {
+      "arxiv_id": "2412.00547",
+      "title": "Motion Dreamer: Boundary Conditional Motion Reasoning for Physically Coherent Video Generation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.882226943969727,
+      "y": 2.3441860675811768,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2502.21123",
+      "title": "Causality Is Key to Understand and Balance Multiple Goals in Trustworthy ML and Foundation Models",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.198505163192749,
+      "y": -0.1821257621049881,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2505.07920",
+      "title": "Re2: A Consistency-ensured Dataset for Full-stage Peer Review and Multi-turn Rebuttal Discussions",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.579840660095215,
+      "y": 1.11869478225708,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2505.07920",
+      "title": "Re2: A Consistency-ensured Dataset for Full-stage Peer Review and Multi-turn Rebuttal Discussions",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.579840660095215,
+      "y": 1.11869478225708,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2505.12050",
+      "title": "AdaBoN: Adaptive Best-of-N Alignment",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.4734811782836914,
+      "y": 1.6981353759765625,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2505.12050",
+      "title": "AdaBoN: Adaptive Best-of-N Alignment",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.4734811782836914,
+      "y": 1.6981353759765625,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2505.15418",
+      "title": "Guided Policy Optimization under Partial Observability",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.767251968383789,
+      "y": 0.43347322940826416,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2505.15418",
+      "title": "Guided Policy Optimization under Partial Observability",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.767251968383789,
+      "y": 0.43347322940826416,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2505.15854",
+      "title": "Integration of TinyML and LargeML: A Survey of 6G and Beyond",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.271953105926514,
+      "y": 1.6757633686065674,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2505.20343",
+      "title": "Do LLMs have a Gender (Entropy) Bias?",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.3302533626556396,
+      "y": 0.8793010711669922,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2506.00819",
+      "title": "DriveMind: A Dual Visual Language Model-based Reinforcement Learning Framework for Autonomous Driving",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.7671637535095215,
+      "y": 1.445172905921936,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2506.17188",
+      "title": "Towards AI Search Paradigm",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.849724054336548,
+      "y": -0.9802492260932922,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2506.17188",
+      "title": "Towards AI Search Paradigm",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.849724054336548,
+      "y": -0.9802492260932922,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2506.17564",
+      "title": "Accelerating Residual Reinforcement Learning with Uncertainty Estimation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.0796051025390625,
+      "y": 0.7121062278747559,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning > Maximum Entropy Exploration Without"
+    },
+    {
+      "arxiv_id": "2506.17564",
+      "title": "Accelerating Residual Reinforcement Learning with Uncertainty Estimation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.0796051025390625,
+      "y": 0.7121062278747559,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2507.03633",
+      "title": "From Video to EEG: Adapting Joint Embedding Predictive Architecture to Uncover Saptiotemporal Dynamics in Brain Signal Analysis",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.898120403289795,
+      "y": 3.206852674484253,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2507.20796",
+      "title": "Aligning Large Language Model Agents with Rational and Moral Preferences: A Supervised Fine-Tuning Approach",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.2504897117614746,
+      "y": -0.10752039402723312,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2508.05880",
+      "title": "Large language models show fragile cognitive reasoning about human emotions",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.1539368629455566,
+      "y": 0.35006213188171387,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2508.09325",
+      "title": "SegDAC: Visual Generalization in Reinforcement Learning via Dynamic Object Tokens",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.820071697235107,
+      "y": 2.0497727394104004,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2508.10954",
+      "title": "UniPrompt-CL: Sustainable Continual Learning in Medical AI with Unified Prompt Pools",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.536328315734863,
+      "y": 2.697056531906128,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2508.16624",
+      "title": "The GPT-4o Shock Emotional Attachment to AI Models and Its Impact on Regulatory Acceptance: A Cross-Cultural Analysis of the Immediate Transition from GPT-4o to GPT-5",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.3086869716644287,
+      "y": -0.6226214170455933,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2508.16624",
+      "title": "The GPT-4o Shock Emotional Attachment to AI Models and Its Impact on Regulatory Acceptance: A Cross-Cultural Analysis of the Immediate Transition from GPT-4o to GPT-5",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.3086869716644287,
+      "y": -0.6226214170455933,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2509.12431",
+      "title": "Neural-Quantum-States Impurity Solver for Quantum Embedding Problems",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.431103229522705,
+      "y": 1.7339180707931519,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2509.23325",
+      "title": "Robust Fine-Tuning from Non-Robust Pretrained Models: Mitigating Suboptimal Transfer With Epsilon-Scheduling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.171199321746826,
+      "y": 2.3714470863342285,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri > AI Model Modulation with Logits Red"
+    },
+    {
+      "arxiv_id": "2509.23325",
+      "title": "Robust Fine-Tuning from Non-Robust Pretrained Models: Mitigating Suboptimal Transfer With Epsilon-Scheduling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.171199321746826,
+      "y": 2.3714470863342285,
+      "cluster_id": 4,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2509.25084",
+      "title": "Scaling Generalist Data-Analytic Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.368677616119385,
+      "y": -0.9202991127967834,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web  > AI Planning Framework for LLM-Based"
+    },
+    {
+      "arxiv_id": "2509.25084",
+      "title": "Scaling Generalist Data-Analytic Agents",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.368677616119385,
+      "y": -0.9202991127967834,
+      "cluster_id": 8,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2509.26471",
+      "title": "On Deepfake Voice Detection -- It's All in the Presentation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.497929811477661,
+      "y": 3.057586908340454,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2510.03366",
+      "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.8092973232269287,
+      "y": 0.7650755643844604,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2510.14959",
+      "title": "CBF-RL: Safety Filtering Reinforcement Learning in Training with Control Barrier Functions",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.986862659454346,
+      "y": 0.6306722164154053,
+      "cluster_id": 1,
+      "topic": "Thermodynamics of Reinforcement Learning"
+    },
+    {
+      "arxiv_id": "2510.15346",
+      "title": "When to Ensemble: Identifying Token-Level Points for Stable and Fast LLM Ensembling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.568248748779297,
+      "y": 1.8878592252731323,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2510.15346",
+      "title": "When to Ensemble: Identifying Token-Level Points for Stable and Fast LLM Ensembling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.568248748779297,
+      "y": 1.8878592252731323,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2510.15511",
+      "title": "Language Models are Injective and Hence Invertible",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 3.306894540786743,
+      "y": 2.3321430683135986,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2510.17914",
+      "title": "NeuCo-Bench: A Novel Benchmark Framework for Neural Embeddings in Earth Observation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.3513360023498535,
+      "y": 2.456895351409912,
+      "cluster_id": 0,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2510.18632",
+      "title": "Think with 3D: Geometric Imagination Grounded Spatial Reasoning from Limited Views",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.222647190093994,
+      "y": -0.6569554805755615,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2510.19973",
+      "title": "A Tutorial on Cognitive Biases in Agentic AI-Driven 6G Autonomous Networks",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.0726094245910645,
+      "y": 0.28283020853996277,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2510.23571",
+      "title": "RobotArena $\\infty$: Scalable Robot Benchmarking via Real-to-Sim Translation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 7.055187225341797,
+      "y": 1.5611045360565186,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2511.03211",
+      "title": "Retrofitters, pragmatists and activists: Public interest litigation for accountable automated decision-making",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.545700788497925,
+      "y": -1.1358447074890137,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web  > The Perfection Paradox: From Archit"
+    },
+    {
+      "arxiv_id": "2511.03211",
+      "title": "Retrofitters, pragmatists and activists: Public interest litigation for accountable automated decision-making",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.545700788497925,
+      "y": -1.1358447074890137,
+      "cluster_id": 11,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2511.14099",
+      "title": "FAPE-IR: Frequency-Aware Planning and Execution Framework for All-in-One Image Restoration",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.027937889099121,
+      "y": 2.6794679164886475,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2511.18507",
+      "title": "Multimodal Continual Learning with MLLMs from Multi-scenario Perspectives",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 5.910364627838135,
+      "y": 3.27897572517395,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2511.18765",
+      "title": "NI-Tex: Non-isometric Image-based Garment Texture Generation",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.798412799835205,
+      "y": 2.521580696105957,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2511.23342",
+      "title": "Overcoming the Curvature Bottleneck in MeanFlow",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.629913330078125,
+      "y": 1.9853769540786743,
+      "cluster_id": 2,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2512.04120",
+      "title": "Towards Contextual Sensitive Data Detection",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.986760139465332,
+      "y": -0.09217886626720428,
+      "cluster_id": null,
+      "topic": "Unknown"
+    },
+    {
+      "arxiv_id": "2512.05343",
+      "title": "SpaceControl: Introducing Test-Time Spatial Control to 3D Generative Modeling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.999698162078857,
+      "y": 2.59509015083313,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri > SAW: Toward a Surgical Action World"
+    },
+    {
+      "arxiv_id": "2512.05343",
+      "title": "SpaceControl: Introducing Test-Time Spatial Control to 3D Generative Modeling",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 6.999698162078857,
+      "y": 2.59509015083313,
+      "cluster_id": 5,
+      "topic": "AI Model Modulation with Logits Redistri"
+    },
+    {
+      "arxiv_id": "2512.11946",
+      "title": "Global Sensitivity Analysis for Engineering Design Based on Individual Conditional Expectations",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.727097034454346,
+      "y": 0.632603108882904,
+      "cluster_id": 6,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    },
+    {
+      "arxiv_id": "2512.11946",
+      "title": "Global Sensitivity Analysis for Engineering Design Based on Individual Conditional Expectations",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 4.727097034454346,
+      "y": 0.632603108882904,
+      "cluster_id": 6,
+      "topic": "On Using Machine Learning to Early Detec"
+    },
+    {
+      "arxiv_id": "2512.12858",
+      "title": "Information-Consistent Language Model Recommendations through Group Relative Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.7469308376312256,
+      "y": 1.171556830406189,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web  > Developing and evaluating a chatbot"
+    },
+    {
+      "arxiv_id": "2512.12858",
+      "title": "Information-Consistent Language Model Recommendations through Group Relative Policy Optimization",
+      "date": "2026-03-16",
+      "rank_score": 0,
+      "x": 2.7469308376312256,
+      "y": 1.171556830406189,
+      "cluster_id": 9,
+      "topic": "AI Planning Framework for LLM-Based Web "
+    }
+  ],
+  "edges": []
+}

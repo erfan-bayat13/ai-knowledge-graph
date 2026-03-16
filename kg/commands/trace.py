@@ -58,7 +58,7 @@ def _resolve(query: str) -> str:
     db.connect()
     results = db.run_query(
         "MATCH (p:Paper) WHERE toLower(p.title) CONTAINS toLower($q) "
-        "RETURN p.arxiv_id AS arxiv_id ORDER BY p.rank_score DESC NULLS LAST LIMIT 1",
+        "RETURN p.arxiv_id AS arxiv_id ORDER BY p.rank_score DESC LIMIT 1",
         {"q": query}
     )
     db.close()

@@ -246,7 +246,7 @@ class Neo4jClient:
         RETURN citing.arxiv_id AS arxiv_id, citing.title AS title,
                citing.published_date AS published_date,
                citing.rank_score AS rank_score
-        ORDER BY citing.rank_score DESC NULLS LAST
+        ORDER BY citing.rank_score DESC
         LIMIT $limit
         """
         return self.run_query(query, {"arxiv_id": arxiv_id, "limit": limit})
